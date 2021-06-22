@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Omega Beats</title>
+
+        <!-- Custom Css Styling-->
+        <link rel="stylesheet" href="/static/main.css">
+        <link rel="stylesheet" href="/static/browser.css">
+        <link rel="stylesheet" href="/static/navigation.css">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Patua+One&family=Roboto:wght@900&display=swap" rel="stylesheet">
+    
+    </head>
+    <body>
+            
+        <!-- navigation-->
+        <ul>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn sub_title">Links</a>
+                <div class="dropdown-content sub_title">
+                <a href="#">Browser</a>
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+                </div>
+            </li>
+        </ul>
+        
+        <h2 id="browser_title" class="centered page_title">Beat Browser</h2>
+
+        <button class="centered main-button create-button">Create your own beat!</button>
+        
+        <form id="search_form" class="">
+            <input id="search_field" type="text" placeholder="Enter beat name here..." class="centered main-button" >
+            <input id="search_button" type="submit" value="Search by beat name" class="centered main-button" >
+        </form>
+
+        <section id="post-container">
+
+            <article class="centered beat-post">
+                <a href="#" class="beat-play"></a>
+                <p class="beat-info">
+                    <a href="#">beat name #1</a>
+                    by
+                    <a href="#">amazing artist #1</a>
+                </p>
+            </article>
+
+            <article class="centered beat-post">
+                <a href="#" class="beat-play"></a>
+            
+                <p class="beat-info" readonly>
+                    <a href="#">beat name #2</a>
+                    by
+                    <a href="#">amazing artist #2</a>
+                </p>
+            </article>
+
+            <article class="centered beat-post">
+                <a href="#" class="beat-play"></a>
+                <p class="beat-info">
+                    <a href="#">beat name #3</a>
+                    by
+                    <a href="#">amazing artist #3</a>
+                </p>
+            </article>
+
+            <article class="centered beat-post">
+                <a href="#" class="beat-play"></a>
+                <p class="beat-info">
+                    <a href="#">beat name #4</a>
+                    by
+                    <a href="#">amazing artist #4</a>
+                </p>
+            </article>
+        
+        </section>    
+    </body>
+</html>
