@@ -1,117 +1,139 @@
 @keyframes pulse {
-  0% {
-    background: #C31616;
-  }
-  25% {
-    background: #951111;
-  }
-  50% {
-    background: #941616;
-  }
+    0% {
+        background: #C31616;
+    }
+    25% {
+        background: #951111;
+    }
+    50% {
+        background: #941616;
+    }
 }
+
 @keyframes pulse2 {
-  0% {
-    background: #941616;
-    border-left-color: #FFFFFF;
-  }
-  50% {
-    border-left-color: #312A2A;
-  }
+    0% {
+        background: #941616;
+        border-left-color: #FFFFFF;
+    }
+    50% {
+        border-left-color: #312A2A;
+    }
 }
+
 #browser_title {
-  color: #FBE5E5;
-  font-family: "Lobster", cursive;
-  font-size: 100px;
-  margin-top: 100px;
+    color: #fcf4f4;
+    font-family: "Lobster", cursive;
+    font-size: 100px;
+    margin-top: 100px;
 }
 
 .beat-post {
-  background-color: #C31616;
-  border-radius: 11px;
-  height: 110px;
-  width: 1300px;
-  margin-top: 63px;
+    background-color: #C31616;
+    border-radius: 11px;
+    height: 110px;
+    width: 1300px;
+    margin-top: 63px;
 }
+
 .beat-post:hover {
-  animation: 3s ease 0s pulse;
-  background-color: #941616;
-  border-radius: 11px;
+    animation: 3s ease 0s pulse;
+    background-color: #941616;
+    border-radius: 11px;
 }
+
 .beat-post:hover > a {
-  border-radius: 0;
+    border-radius: 0;
 }
+
 .beat-post:hover > * {
-  animation: 3s ease 0s pulse;
-  background-color: #941616;
-  border-radius: 11px;
+    animation: 3s ease 0s pulse;
+    background-color: #941616;
+    border-radius: 11px;
 }
 
 .beat-info {
-  color: #FBE5E5;
-  font-family: "Patua One", cursive;
-  font-size: 60px;
-  margin: 0;
-  margin-top: 15px;
+    color: #FBE5E5;
+    font-family: "Patua One", cursive;
+    font-size: 60px;
+    margin: 0;
+    margin-top: 15px;
 }
+
 .beat-info a {
-  color: #FBE5E5;
-  font-family: "Pacifico", cursive;
-  text-decoration: none;
-  text-shadow: 1px 1px 2px #000000;
+    color: #FBE5E5;
+    font-family: "Pacifico", cursive;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px #000000;
 }
 
 .beat-play {
-  background-color: #C31616;
-  position: absolute;
-  left: 7%;
-  top: 10px;
-  width: 0;
-  height: 0;
-  border-top: 45px solid transparent;
-  border-bottom: 45px solid transparent;
-  border-left: 75px solid white;
+    background-color: #C31616;
+    position: absolute;
+    left: 7%;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 45px solid transparent;
+    border-bottom: 45px solid transparent;
+    border-left: 75px solid white;
 }
+
 .beat-play:hover {
-  background: #941616;
-  border-left-color: #312A2A;
+    background: #941616;
+    border-left-color: #312A2A;
 }
 
 .create-button {
-  font-family: "Pacifico", cursive;
-  height: 100px;
-  width: 500px;
-  padding: 0;
-  padding-bottom: 5px;
-  margin-top: 40px;
+    /*font-family: "Pacifico", cursive;*/
+    height: 100px;
+    width: 500px;
+    /*padding: 0;*/
+    /*padding-bottom: 5px;*/
+    /*margin-top: 40px;*/
 }
+/*
 .create-button:hover {
-  animation: 3s ease 0s pulse;
-  background-color: #941616;
-  border-radius: 20px;
+    animation: 3s ease 0s pulse;
+    background-color: #941616;
+    border-radius: 20px;
 }
+*/
 
 #search_form {
-  text-align: center;
-  position: relative;
-  top: 50%;
-  left: 8%;
-  transform: translate(-50%, -50%);
-  padding: 0;
-  margin: 0;
-  height: 100px;
-  margin-top: 0px;
-  margin-bottom: 127px;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 8%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    height: 100px;
+    margin-top: 0px;
+    margin-bottom: 127px;
 }
+
 #search_form input {
-  height: 70px;
-  font-size: 25px;
+    height: 70px;
+    font-size: 25px;
 }
+
 #search_form input::placeholder {
-  color: #B5B5B5;
+    color: #B5B5B5;
 }
+
 #search_form #search_field {
-  box-sizing: border-box;
-  border: 5px solid "Patua One", cursive;
+    box-sizing: border-box;
+    border: 5px solid "Patua One", cursive;
+}
+
+#create-link {
+    font-size: 50px;
+    font-family: "Pacifico", cursive;
+    height: 100px;
+    width: 500px;
+    padding: 0;
+    padding-bottom: 5px;
+    margin-top: 40px;
 }
 
 /*# sourceMappingURL=browser.css.map */

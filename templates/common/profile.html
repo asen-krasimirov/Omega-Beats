@@ -1,0 +1,44 @@
+{% extends 'shared/base.html' %}
+
+{% block main_content %}
+        <div class="centered circle profile-image-holder">
+            <img id="profile-image" src="https://sm.mashable.com/t/mashable_in/feature/d/dogecoin-e/dogecoin-everything-you-need-to-know-about-the-cryptocurrenc_4ssb.h1280.jpg" alt="profile-picture">
+        </div>
+        
+        <hr>
+
+        <div>
+            <div class="holder description-holder">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                Lorem Ipsum is simply dummy text of the printing and t
+            </div>
+        </div>
+        <hr>
+        
+        <div class="centered profile_sub_title sub_title">
+            User's Music Collection
+        </div>
+        
+        <section id="post-container">
+            <article class="centered beat-post">
+                <a href="#" class="beat-play"></a>
+                <p class="beat-info">
+                    <a href="#">beat name #1</a>
+                    by
+                    <a href="#">amazing artist #1</a>
+                </p>
+            </article>
+
+            <article class="centered beat-post">
+                <a href="#" class="beat-play"></a>
+            
+                <p class="beat-info" readonly>
+                    <a href="#">beat name #2</a>
+                    by
+                    <a href="#">amazing artist #2</a>
+                </p>
+            </article>
+
+            <!-- <h1 class="centered profile_sub_title sub_title"> Not yet created... </h1> -->
+        </section>
+{% endblock %}

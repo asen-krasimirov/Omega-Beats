@@ -1,0 +1,49 @@
+{% extends 'shared/base.html' %}
+
+
+{% load static %}
+
+<!-- Styles -->
+{% block aditional_styles %}
+    <link rel="stylesheet" href="{% static 'piano_style.css' %}">
+{% endblock %}
+
+<!-- Scripts -->
+{% block aditional_scripts %}
+    <script src="{% static 'piano_script.js' %}" type="module"></script>
+{% endblock %}
+
+{% block main_content %}
+    <div class="centered buttons">
+        <button class="record-button btn">Record</button>
+        <a class="btn">Save</a>
+        <a class="btn">Play</a>
+    </div>
+    <div class="piano">
+        <div data-note="C" class="key white"></div>
+        <div data-note="Db" class="key black"></div>
+        <div data-note="D" class="key white"></div>
+        <div data-note="Eb" class="key black"></div>
+        <div data-note="E" class="key white"></div>
+        <div data-note="F" class="key white"></div>
+        <div data-note="Gb" class="key black"></div>
+        <div data-note="G" class="key white"></div>
+        <div data-note="Ab" class="key black"></div>
+        <div data-note="A" class="key white"></div>
+        <div data-note="Bb" class="key black"></div>
+        <div data-note="B" class="key white"></div>
+    </div>
+
+    <audio id="C" src="{% static 'C.mp3' %}"></audio>
+    <audio id="Db" src="{% static 'Db.mp3' %}"></audio>
+    <audio id="D" src="{% static 'D.mp3' %}"></audio>
+    <audio id="Eb" src="{% static 'E.mp3' %}"></audio>
+    <audio id="E" src="{% static 'Eb.mp3' %}"></audio>
+    <audio id="F" src="{% static 'F.mp3' %}"></audio>
+    <audio id="Gb" src="{% static 'Gb.mp3' %}"></audio>
+    <audio id="G" src="{% static 'G.mp3' %}"></audio>
+    <audio id="Ab" src="{% static 'Ab.mp3' %}"></audio>
+    <audio id="A" src="{% static 'A.mp3' %}"></audio>
+    <audio id="Bb" src="{% static 'Bb.mp3' %}"></audio>
+    <audio id="B" src="{% static 'B.mp3' %}"></audio>
+{% endblock %}

@@ -66,4 +66,14 @@ body {
   cursor: pointer;
 }
 
+.main-button a {
+  font-family: "Roboto", sans-serif;
+  font-size: 50px;
+  color: #FBE5E5;
+  text-shadow: 2px 2px 4px #000000;
+  padding: 20px 10px;
+  text-decoration: none;
+  width: 500px;
+}
+
 /*# sourceMappingURL=main.css.map */

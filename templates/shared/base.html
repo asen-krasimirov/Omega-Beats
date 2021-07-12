@@ -4,33 +4,47 @@
         <meta charset="utf-8">
         <title>Omega Beats</title>
 
+        {% load static %}
+
         <!-- Custom Css Styling-->
-        <link rel="stylesheet" href="/static/main.css">
-        <link rel="stylesheet" href="/static/browser.css">
-        <link rel="stylesheet" href="/static/navigation.css">
-        
+        <link rel="stylesheet" href={% static 'main.css' %}>
+        <link rel="stylesheet" href={% static 'browser.css' %}>
+        <link rel="stylesheet" href={% static 'navigation.css' %}>
+        <link rel="stylesheet" href={% static 'profile.css' %}>
+
+        {% block aditional_styles %}
+        {% endblock %}
+
         <!-- Font Family Links -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Patua+One&family=Roboto:wght@900&display=swap" rel="stylesheet">
 
+        <!-- JS Scripts -->
+
+        {% block aditional_scripts %}
+        {% endblock %}
 
     </head>
     <body>
-        
+
         <!-- navigation-->
         <ul>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn sub_title">Links</a>
                 <div class="dropdown-content sub_title">
-                <a href="#">Browser</a>
+                <a href="{% url 'browser page' %}">Browser</a>
                 <a href="#">Login</a>
                 <a href="#">Register</a>
+                <a href="{% url 'profile page' 1 %}">Profile</a>
                 </div>
             </li>
         </ul>
 
-        <h1 class="centered page_title">OMEGA BEATS</h1>
-        <h2 class="centered sub_title">Amazing beats made easy and fast!</h2>
-        <button class="main-button centered">Get Started</button>
+        <!-- main content -->
+        <main id="main-content">
+            {% block main_content %}
+            {% endblock %}
+        </main>
+
     </body>
 </html>

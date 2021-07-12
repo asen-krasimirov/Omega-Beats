@@ -10,6 +10,7 @@ li {
     float: left;
 
     color: #FBE5E5;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 li a,
@@ -53,9 +54,10 @@ li.dropdown {
 .dropdown-content a {
     border-radius: 20px;
 
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
+    text-shadow: 2px 2px 4px #000000;
     display: block;
     text-align: left;
 }

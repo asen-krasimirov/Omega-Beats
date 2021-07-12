@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
 
+    'omega_beats.common',
+    'omega_beats.beats',
+    'omega_beats.api',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +129,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    (BASE_DIR / 'static/styles/'),
+    (BASE_DIR / 'static/scripts/'),
+    (BASE_DIR / 'static/notes/'),
+
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
