@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 
 class Beat(models.Model):
@@ -11,3 +12,9 @@ class Beat(models.Model):
 
     def __str__(self):
         return f'{self.pk}, {self.title}'
+
+
+# class BeatNotes(models.Model):
+    # notes = ArrayField(
+
+    # )

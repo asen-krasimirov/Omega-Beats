@@ -61,11 +61,12 @@ function stopRecording() {
 
 function playSong() {
     if (songNotes.length === 0) return;
+    console.log(songNotes);
     songNotes.forEach(note => {
         setTimeout(() => {
             playNote(keyMap[note.key])
         }, note.startTime);
-    })
+    });
 }
 
 function playNote(key) {
