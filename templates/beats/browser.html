@@ -3,65 +3,27 @@
 {% block main_content %}
     <h2 id="browser_title" class="centered page_title">Beat Browser</h2>
 
-    <button class="centered main-button create-button"><a id="create-link" href="{% url 'piano page' %}">Create your own beat!</a></button>
+    <a class="centered main-button create-button" id="create-link" href="{% url 'piano page' %}">Create your own
+        beat!</a>
 
-    <form id="search_form" class="">
-        <input id="search_field" type="text" placeholder="Enter beat name here..." class="centered main-button" >
-        <input id="search_button" type="submit" value="Search by beat name" class="centered main-button" >
+    <form class="search_form">
+        <input class="search_field centered main-button" type="text" placeholder="Enter beat name here...">
+        <input class="search_button centered main-button" type="submit" value="Search by beat name">
     </form>
 
     <section id="post-container">
-
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
-            <p class="beat-info">
-                <a href="#">beat name #1</a>
-                <!--
-                by
-                <a href="#">amazing artist #1</a>
-                -->
-            </p>
-        </article>
-
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
-
-            <p class="beat-info" readonly>
-                <a href="#">beat name #2</a>
-                by
-                <a href="#">amazing artist #2</a>
-            </p>
-        </article>
-
-        <!--
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
-
-            <p class="beat-info" readonly>
-                <a href="#">beat name #2</a>
-                by
-                <a href="#">amazing artist #2</a>
-            </p>
-        </article>
-
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
-            <p class="beat-info">
-                <a href="#">beat name #3</a>
-                by
-                <a href="#">amazing artist #3</a>
-            </p>
-        </article>
-
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
-            <p class="beat-info">
-                <a href="#">beat name #4</a>
-                by
-                <a href="#">amazing artist #4</a>
-            </p>
-        </article>
-        -->
+        {% if beats %}
+            {% for beat in beats %}
+                <article class="centered beat-post">
+                    <a href="#" class="beat-play"></a>
+                    <a class="beat-info" href="#">{{ beat.title }}</a>
+                    <img class="beat-browser-image" src="{{ beat.cover_image.url }}">
+                </article>
+            {% endfor %}
+        {% else %}
+            <a  class="main-button create-button" style="width: 700px; margin-left: 500px;" href="{% url 'piano page' %}">There are no beats added yet!
+                Click to add!</a>
+        {% endif %}
 
     </section>
 {% endblock %}

@@ -32,10 +32,14 @@
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn sub_title">Links</a>
                 <div class="dropdown-content sub_title">
+                <a href="{% url 'home page' %}">Home</a>
                 <a href="{% url 'browser page' %}">Browser</a>
+                <!-- login and register -->
                 <a href="#">Login</a>
                 <a href="#">Register</a>
+                <!-- or profile and logout -->
                 <a href="{% url 'profile page' 1 %}">Profile</a>
+                <a href="#">Logout</a>
                 </div>
             </li>
         </ul>

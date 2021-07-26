@@ -89,3 +89,7 @@ body {
 .black.active {
     background-color: #333;
 }
+
+#saveSongForm {
+    display: inline;
+}

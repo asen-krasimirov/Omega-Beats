@@ -1,0 +1,44 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+<!-- Styles -->
+{% block aditional_styles %}
+    <link rel="stylesheet" href="{% static 'form_styles.css' %}">
+{% endblock %}
+
+<!-- Scripts -->
+{% block aditional_scripts %}
+    <script src="{% static 'image_input_script.js' %}" type="module"></script>
+{% endblock %}
+
+{% block main_content %}
+    <h2 id="browser_title" class="centered page_title">Beat Registration</h2>
+    {% if form.errors %}
+        <div class="centered form-errors">
+            Some of the registration requirements are not met!
+            <br>
+            Please check your form and try again!
+        </div>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" class="custom-form">
+        {% csrf_token %}
+
+        <div class="block centered">
+            <label class="sub_title" for="id_title">Title:</label>
+            {{ form.title }}
+        </div>
+        <div class="block centered">
+            <label class="sub_title" for="id_description">Description:</label>
+            {{ form.description }}
+        </div>
+        <div class="block centered file-input">
+            <label for="id_cover_image" class="sub_title centered">
+                Select a cover image
+                <p class="file-name">*Select an image for beat's cover</p>
+            </label>
+            {{ form.cover_image }}
+        </div>
+        <button id="register-button" class="centered main-button">Register Beat</button>
+    </form>
+{% endblock %}

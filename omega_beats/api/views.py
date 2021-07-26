@@ -3,7 +3,7 @@
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from omega_beats.api.models import Beat
+from omega_beats.api.models import Beat, BeatNotes
 from omega_beats.api.serializers import BeatSerializer
 
 
@@ -22,14 +22,14 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def beatList(request):
-    beats = Beat.objects.all()
+    beats = BeatNotes.objects.all()
     serializer = BeatSerializer(beats, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def beatDetail(request, pk):
-    beat = Beat.objects.get(pk=pk)
+    beat = BeatNotes.objects.get(pk=pk)
     serializer = BeatSerializer(beat, many=False)
     return Response(serializer.data)
 
@@ -46,7 +46,7 @@ def beatCreate(request):
 
 @api_view(['POST'])
 def beatUpdate(request, pk):
-    beat = Beat.objects.get(pk=pk)
+    beat = BeatNotes.objects.get(pk=pk)
     serializer = BeatSerializer(data=request.data, instance=beat)
 
     if serializer.is_valid():
@@ -57,7 +57,7 @@ def beatUpdate(request, pk):
 
 @api_view(['DELETE'])
 def beatDelete(request, pk):
-    beat = Beat.objects.get(pk=pk)
+    beat = BeatNotes.objects.get(pk=pk)
     beat.delete()
 
     return Response("Item successfully deleted!")
