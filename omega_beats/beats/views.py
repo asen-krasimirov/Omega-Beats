@@ -3,13 +3,9 @@ import json
 import requests
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, ListView
+from django.views.generic import UpdateView, ListView, TemplateView, DetailView
 from omega_beats.api.models import BeatNotes, Beat
 from omega_beats.beats.forms import RegisterBeatForm
-
-
-def browser_page(request):
-    return render(request, 'beats/browser.html')
 
 
 class BrowserView(ListView):
@@ -19,8 +15,8 @@ class BrowserView(ListView):
     template_name = 'beats/browser.html'
 
 
-def piano_page(request):
-    return render(request, 'beats/piano_player.html')
+class PianoRecorder(TemplateView):
+    template_name = 'beats/piano_player.html'
 
 
 def piano_beat_details_page(request, pk):
@@ -46,34 +42,7 @@ def save_beat_notes_page(request):
         beat_notes=new_beat_notes,
     ).save()
 
-    # return render(request, '')
     return redirect('create beat', pk=new_beat_notes.pk)
-
-
-# def register_beat_page(request, pk):
-#     beat = Beat.objects.get(pk=pk)
-#
-#     if request.method == 'POST':
-#         print(request.POST)
-#         print(request.FILES)
-#         data = request.POST
-#         files = request.FILES
-#         # form = PythonCreateForm(data, files)
-#         form = RegisterBeatForm(data, files, instance=beat)
-#         if form.is_valid():
-#             form.save()
-#             # return redirect('beat details', pk=pk) Todo: redirect to beat details or beat player
-#             return redirect('browser page')
-#     else:
-#         form = RegisterBeatForm(instance=beat)
-#
-#     context = {
-#         'form': form,
-#     }
-#
-#     # form = BeatForm(instance=beat)
-#     # ... Todo: save beat information and redirect to player/profile
-#     return render(request, 'beats/create_beat.html', context)
 
 
 class RegisterBeatView(UpdateView):
@@ -81,3 +50,9 @@ class RegisterBeatView(UpdateView):
     form_class = RegisterBeatForm
     template_name = 'beats/create_beat.html'
     success_url = reverse_lazy('browser page')
+
+
+class PianoPlayer(DetailView):
+    model = Beat
+    context_object_name = 'beat_info'
+    template_name = 'beats/piano_player.html'

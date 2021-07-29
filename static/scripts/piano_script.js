@@ -1,7 +1,9 @@
-// const csrf = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
-
 const WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm']
 const BLACK_KEYS = ['s', 'd', 'g', 'h', 'j']
+
+const currentSongInput = document.querySelector('#loaded-notes');
+const currentSong = currentSongInput ? JSON.parse(currentSongInput.value.replaceAll('\'', '"')) : null;
+currentSongInput.value = ""
 
 const recordButton = document.querySelector('.record-button');
 const playButton = document.querySelector('.play-button');
@@ -18,7 +20,7 @@ const keyMap = [...keys].reduce((map, key) => {
 }, {});
 
 let recordingStartTime;
-let songNotes;
+let songNotes = currentSong;
 
 keys.forEach(key => {
     key.addEventListener('click', () => playNote(key));
@@ -35,10 +37,8 @@ document.addEventListener('keydown', event => {
     if (blackKeyIndex > -1) playNote(blackKeys[blackKeyIndex]);
 });
 
-recordButton.addEventListener('click', toggleRecording);
+if (recordButton) recordButton.addEventListener('click', toggleRecording);
 playButton.addEventListener('click', playSong);
-
-// saveButton.addEventListener('click', saveSong);
 
 
 function toggleRecording(event) {
@@ -96,5 +96,5 @@ function recordNote(note) {
 
 
 function embedSong() {
-    songNotesInput.value = JSON.stringify(songNotes);
+    if (songNotesInput) songNotesInput.value = JSON.stringify(songNotes);
 }

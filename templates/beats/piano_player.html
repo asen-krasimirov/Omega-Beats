@@ -14,17 +14,27 @@
 {% endblock %}
 
 {% block main_content %}
-{#    <meta name="csrf-token" content="{% csrf_token %}">#}
-{#    {% csrf_token %}#}
+    <!-- if a song is loaded -->
+    {% if beat_info %}
+        <input id="loaded-notes" type="hidden" value="{{ beat_info.beat_notes.beat_notes }}">
+    {% endif %}
+
     <div class="centered buttons">
-        <button class="record-button btn">Record</button>
-        <a class="play-button btn">Play</a>
-{#        <a class="save-button btn">Save</a>#}
-        <form id="saveSongForm" method="post" action="{% url 'save song' %}">
-            {% csrf_token %}
-            <input id="songNotesInput" name="notesData" type="hidden">
-            <button class="save-button btn">Save</button>
-        </form>
+        {% if not beat_info %}
+            <button class="record-button btn">Record</button>
+            <a class="play-button btn">Play</a>
+            <form id="saveSongForm" method="post" action="{% url 'save song' %}">
+                {% csrf_token %}
+                <input id="songNotesInput" name="notesData" type="hidden">
+                <button class="save-button btn">Save</button>
+            </form>
+        {% else %}
+            <h3 class="sub_title beat-title">"{{ beat_info.title }}"</h3>
+            <h5 class="sub_title" style="margin-bottom: 50px;">by { { owner_name } }</h5>
+            <a class="play-button btn show">Play</a>
+            <a class="btn show" href="#">Beat Info</a>
+        {% endif %}
+
     </div>
     <div class="piano">
         <div data-note="C" class="key white"></div>
