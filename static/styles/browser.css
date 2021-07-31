@@ -22,15 +22,15 @@
   color: #FBE5E5;
   font-family: "Lobster", cursive;
   font-size: 100px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .beat-post {
   display: inline-block;
   background-color: #C31616;
   border-radius: 11px;
-  height: 300px;
-  width: 344px;
+  height: 345px;
+  width: 370px;
   left: 20%;
   /* right: 20%; */
   /* margin-left: 5px; */

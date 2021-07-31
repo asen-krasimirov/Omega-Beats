@@ -32,7 +32,7 @@
             <h3 class="sub_title beat-title">"{{ beat_info.title }}"</h3>
             <h5 class="sub_title" style="margin-bottom: 50px;">by { { owner_name } }</h5>
             <a class="play-button btn show">Play</a>
-            <a class="btn show" href="#">Beat Info</a>
+            <a class="btn show" href="{% url 'beat details' beat_info.pk %}">Beat Info</a>
         {% endif %}
 
     </div>

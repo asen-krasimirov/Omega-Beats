@@ -1,5 +1,5 @@
 from django.contrib import admin
-from omega_beats.api.models import Beat, BeatNotes
+from omega_beats.api.models import Beat, BeatNotes, BeatPlay
 
 
 @admin.register(Beat)
@@ -9,4 +9,9 @@ class BeatAdmin(admin.ModelAdmin):
 
 @admin.register(BeatNotes)
 class BeatContentAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(BeatPlay)
+class BeatPlayAdmin(admin.ModelAdmin):
     pass

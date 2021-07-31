@@ -26,6 +26,7 @@ label {
     margin-left: 100px;
     height: 200px;
     vertical-align: middle;
+    font-size: 25px;
 }
 
 .block input[name=cover_image] {

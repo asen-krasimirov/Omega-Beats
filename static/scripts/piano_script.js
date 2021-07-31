@@ -3,7 +3,9 @@ const BLACK_KEYS = ['s', 'd', 'g', 'h', 'j']
 
 const currentSongInput = document.querySelector('#loaded-notes');
 const currentSong = currentSongInput ? JSON.parse(currentSongInput.value.replaceAll('\'', '"')) : null;
-currentSongInput.value = ""
+try {
+    currentSongInput.value = ""
+} catch(e) {}
 
 const recordButton = document.querySelector('.record-button');
 const playButton = document.querySelector('.play-button');

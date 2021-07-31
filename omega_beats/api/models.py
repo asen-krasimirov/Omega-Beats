@@ -10,7 +10,7 @@ class BeatNotes(models.Model):
 
 class Beat(models.Model):
     title = models.CharField(
-        max_length=100,
+        max_length=30,
         null=True,
     )
     description = models.TextField(
@@ -31,7 +31,17 @@ class Beat(models.Model):
 
     # owner = Todo: add owner/profile system
 
-    # views = Todo: add views and likes system
+    # likes = Todo: add views and likes system
 
     def __str__(self):
         return f'{self.pk}, {self.title}'
+
+
+class BeatPlay(models.Model):
+    beat = models.ForeignKey(
+        Beat,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return f'{self.beat.title} play, {self.pk}'

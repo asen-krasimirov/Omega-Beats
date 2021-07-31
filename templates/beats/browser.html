@@ -16,7 +16,7 @@
             {% for beat in beats %}
                 <article class="centered beat-post">
                     <a href="{% url 'play beat' beat.pk %}" class="beat-play"></a>
-                    <a class="beat-info" href="#">{{ beat.title }}</a>
+                    <a class="beat-info" href="{% url 'beat details' beat.pk %}">{{ beat.title|truncatechars:15 }}</a>
                     <img class="beat-browser-image" src="{{ beat.cover_image.url }}">
                 </article>
             {% endfor %}

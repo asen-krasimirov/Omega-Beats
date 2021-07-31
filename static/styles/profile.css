@@ -18,7 +18,7 @@
     border-left-color: #312A2A;
   }
 }
-.circle, #profile-image {
+.circle, .profile-image {
   height: 190px;
   width: 190px;
   background-color: #bbb;
@@ -30,7 +30,7 @@
   margin-top: 5%;
 }
 
-#profile-image {
+.profile-image {
   border-radius: 100px;
   display: block;
   margin-left: auto;

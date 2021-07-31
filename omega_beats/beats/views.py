@@ -4,7 +4,7 @@ import requests
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, ListView, TemplateView, DetailView
-from omega_beats.api.models import BeatNotes, Beat
+from omega_beats.api.models import BeatNotes, Beat, BeatPlay
 from omega_beats.beats.forms import RegisterBeatForm
 
 
@@ -56,3 +56,16 @@ class PianoPlayer(DetailView):
     model = Beat
     context_object_name = 'beat_info'
     template_name = 'beats/piano_player.html'
+
+    def get(self, request, **kwargs):
+        beat = Beat.objects.get(pk=kwargs['pk'])
+        BeatPlay(
+            beat=beat,
+        ).save()
+        return super().get(request, **kwargs)
+
+
+class BeatDetails(DetailView):
+    model = Beat
+    context_object_name = 'beat'
+    template_name = 'beats/details_beat.html'
