@@ -1,14 +1,13 @@
 import json
 
 import requests
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, ListView, TemplateView, DetailView
 from omega_beats.api.models import BeatNotes, Beat, BeatPlay
 from omega_beats.beats.forms import RegisterBeatForm
+from omega_beats.omega_beats_auth.models import Profile
 
 
 class BrowserView(ListView):
@@ -47,6 +46,7 @@ def save_beat_notes_page(request):
 
     Beat(
         beat_notes=new_beat_notes,
+        owner=request.user,
     ).save()
 
     return redirect('create beat', pk=new_beat_notes.pk)
@@ -76,3 +76,8 @@ class BeatDetails(DetailView):
     model = Beat
     context_object_name = 'beat'
     template_name = 'beats/details_beat.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile'] = Profile.objects.get(pk=self.object.owner.pk)
+        return context

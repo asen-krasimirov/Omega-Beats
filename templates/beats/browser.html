@@ -16,6 +16,7 @@
     <section id="post-container">
         {% if beats %}
             {% for beat in beats %}
+
                 <article class="centered beat-post">
                     <a href="{% url 'play beat' beat.pk %}" class="beat-play"></a>
                     <a class="beat-info" href="{% url 'beat details' beat.pk %}">{{ beat.title|truncatechars:15 }}</a>
@@ -24,8 +25,8 @@
                     {% else %}
                         <img class="beat-browser-image" src="{% static 'default-cover.png' %}">
                     {% endif %}
-
                 </article>
+
             {% endfor %}
         {% else %}
             <a  class="main-button create-button" style="width: 700px; margin-left: 500px;" href="{% url 'piano page' %}">There are no beats added yet!

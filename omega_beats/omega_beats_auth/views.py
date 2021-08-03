@@ -16,6 +16,14 @@ class ProfilePageView(DetailView):
     context_object_name = 'profile'
     template_name = 'common/profile.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.pk == self.request.user.pk
+
+        owner = UserModel.objects.get(pk=self.object.pk)
+        context['beats'] = owner.beat_set.all()
+        return context
+
 
 class ProfileUpdateView(UpdateView):
     model = Profile

@@ -7,78 +7,90 @@
 {% endblock %}
 
 {% block main_content %}
-            <div id="beat-play-holder" class="horizontally-aligned"><a href="{% url 'play beat' beat.pk %}" class="beat-play details-beat-player"></a>&nbsp;</div>
-            <h2 id="beat-title" class="sub_title horizontally-aligned">{{ beat.title }}</h2>
-            
-            <div class="beat-info">
-                <p class="description-holder">
-                    {{ beat.description }}
-                </p>
-                
-                <div class="cover-info">
-                    {% if beat.cover_image %}
-                        <img class="beat-cover-image" src="{{ beat.cover_image.url }}">
-                    {% else %}
-                        <img class="beat-cover-image" src="{% static 'default-cover.png' %}">
-                    {% endif %}
-                    <div class="played-times">{{ beat.beatplay_set.count }} plays</div>
-                    <div class="liked-times">1394 likes</div>
+    <div id="beat-play-holder" class="horizontally-aligned"><a href="{% url 'play beat' beat.pk %}"
+                                                               class="beat-play details-beat-player"></a>&nbsp;
+    </div>
+    <h2 id="beat-title" class="sub_title horizontally-aligned">{{ beat.title }}</h2>
+
+    <div class="beat-info">
+        <p class="description-holder">
+            {{ beat.description }}
+        </p>
+
+        <div class="cover-info">
+            {% if beat.cover_image %}
+                <img class="beat-cover-image" src="{{ beat.cover_image.url }}">
+            {% else %}
+                <img class="beat-cover-image" src="{% static 'default-cover.png' %}">
+            {% endif %}
+            <div class="played-times">{{ beat.beatplay_set.count }} plays</div>
+            <div class="liked-times">1394 likes</div>
+        </div>
+    </div>
+
+    <div class="owner-info">
+        {% if profile.avatar_image %}
+            <img class="profile-image owner-image" src="{{ profile.avatar_image.url }}" alt="profile-picture">
+        {% else %}
+            <img class="profile-image owner-image" src="{% static 'default-image.jpg' %}" alt="profile-picture">
+        {% endif %}
+        <div class="sub_title owner-name comment-owner-name"><a href="{% url 'profile page' profile.pk %}" class="user-profile-link">{{ profile.username }}</a></div>
+    </div>
+
+    <div class="feed-back-btns">
+        <a href="#" class="main-button like-btn">Like</a>
+        <a href="#" class="main-button feed-back-btn">Send Feedback</a>
+        <a class="hidden-tag">&nbsp;</a>
+    </div>
+
+    <h5 class="comments-title">Comments</h5>
+
+    <div class="comment-container">
+        <form method="post" enctype="multipart/form-data" class="comments-form">
+            <input class="main-button" type="text" name="content" placeholder="Post a comment..." maxlength="85">
+            <button id="post-comment-button" class="main-button">Post Comment</button>
+        </form>
+
+        <div class="comments">
+            <div class="comment">
+                <div class="commenter-info">
+                    <img class="profile-image owner-image comment-owner-image"
+                         src="https://img.stickers.cloud/packs/0ba639f2-873a-447c-8f1d-80f6378523d0/webp/436e532a-8330-4bf3-a8cb-a5679eb0e9ed.webp"
+                         alt="profile-picture">
+                    <div class="sub_title owner-name comment-owner-name">{ { commenter.name } }</div>
+                </div>
+                <div class="content-holder">
+                    <p class="comment-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                        ligula eget.</p>
+                    <p class="hidden-comment-tag">&nbsp;</p>
                 </div>
             </div>
 
-            <div class="owner-info">
-                <img class="profile-image owner-image" src="https://sm.mashable.com/t/mashable_in/feature/d/dogecoin-e/dogecoin-everything-you-need-to-know-about-the-cryptocurrenc_4ssb.h1280.jpg" alt="profile-picture">
-                <div class="sub_title owner-name"><a href="#" class="user-profile-link">{ { owner.name } }</a></div>
-            </div>
-
-            <div class="feed-back-btns">
-                <a href="#" class="main-button like-btn">Like</a>
-                <a href="#" class="main-button feed-back-btn">Send Feedback</a>
-                <a class="hidden-tag">&nbsp;</a>
-            </div>
-
-            <h5 class="comments-title">Comments</h5>
-            
-            <div class="comment-container">
-                <form method="post" enctype="multipart/form-data" class="comments-form">
-                        <input class="main-button" type="text" name="content" placeholder="Post a comment..." maxlength="85">
-                        <button id="post-comment-button" class="main-button">Post Comment</button>
-                </form>
-
-                <div class="comments">
-                    <div class="comment">
-                        <div class="commenter-info">
-                            <img class="profile-image owner-image comment-owner-image" src="https://img.stickers.cloud/packs/0ba639f2-873a-447c-8f1d-80f6378523d0/webp/436e532a-8330-4bf3-a8cb-a5679eb0e9ed.webp" alt="profile-picture">
-                            <div class="sub_title owner-name comment-owner-name">{ { commenter.name } }</div>
-                        </div>
-                        <div class="content-holder">
-                            <p class="comment-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget.</p>
-                            <p class="hidden-comment-tag">&nbsp;</p>
-                        </div>
-                    </div>
-            
-                    <div class="comment">
-                        <div class="commenter-info">
-                            <img class="profile-image owner-image comment-owner-image" src="https://thechive.com/wp-content/uploads/2019/12/person-hilariously-photoshops-animals-onto-random-things-xx-photos-25.jpg?attachment_cache_bust=3136487&quality=85&strip=info&w=400" alt="profile-picture">
-                            <div class="sub_title owner-name comment-owner-name">theCrosser</div>
-                        </div>
-                        <div class="content-holder">
-                            <p class="comment-content">This is so lit! Can't wait for part 2!</p>
-                            <p class="hidden-comment-tag">&nbsp;</p>
-                        </div>
-                    </div>
-            
-                    <div class="comment">
-                        <div class="commenter-info">
-                            <img class="profile-image owner-image comment-owner-image" src="http://www.mandysam.com/img/random.jpg" alt="profile-picture">
-                            <div class="sub_title owner-name comment-owner-name">donger conger</div>
-                        </div>
-                        <div class="content-holder">
-                            <p class="comment-content">That is really nice!</p>
-                            <p class="hidden-comment-tag">&nbsp;</p>
-                        </div>
-                    </div>
-
+            <div class="comment">
+                <div class="commenter-info">
+                    <img class="profile-image owner-image comment-owner-image"
+                         src="https://thechive.com/wp-content/uploads/2019/12/person-hilariously-photoshops-animals-onto-random-things-xx-photos-25.jpg?attachment_cache_bust=3136487&quality=85&strip=info&w=400"
+                         alt="profile-picture">
+                    <div class="sub_title owner-name comment-owner-name">theCrosser</div>
+                </div>
+                <div class="content-holder">
+                    <p class="comment-content">This is so lit! Can't wait for part 2!</p>
+                    <p class="hidden-comment-tag">&nbsp;</p>
                 </div>
             </div>
+
+            <div class="comment">
+                <div class="commenter-info">
+                    <img class="profile-image owner-image comment-owner-image"
+                         src="http://www.mandysam.com/img/random.jpg" alt="profile-picture">
+                    <div class="sub_title owner-name comment-owner-name">donger conger</div>
+                </div>
+                <div class="content-holder">
+                    <p class="comment-content">That is really nice!</p>
+                    <p class="hidden-comment-tag">&nbsp;</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}

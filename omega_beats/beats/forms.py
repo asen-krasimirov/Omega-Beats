@@ -6,7 +6,7 @@ from omega_beats.api.models import BeatNotes, Beat
 class RegisterBeatForm(BootstrapForm, forms.ModelForm):
     class Meta:
         model = Beat
-        exclude = ('beat_notes',)
+        exclude = ('beat_notes', 'owner')
         widgets = {
             'title': forms.TextInput(
                 attrs={

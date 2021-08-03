@@ -5,14 +5,16 @@
 {% block main_content %}
     <div class="centered circle profile-image-holder">
         {% if profile.avatar_image %}
-            <img class="profile-image" src="{{ profile.avatar_image.url }}"  alt="profile-picture">
+            <img class="profile-image" src="{{ profile.avatar_image.url }}" alt="profile-picture">
         {% else %}
-            <img class="profile-image" src="{% static 'default-image.jpg' %}"  alt="profile-picture">
+            <img class="profile-image" src="{% static 'default-image.jpg' %}" alt="profile-picture">
         {% endif %}
     </div>
 
     <h1 class="centered sub_title">{{ profile.username }}</h1>
-    <a href="{% url 'update profile' profile.pk %}" class="main-button edit-profile">Edit Profile</a>
+    {% if is_owner %}
+        <a href="{% url 'update profile' profile.pk %}" class="main-button edit-profile">Edit Profile</a>
+    {% endif %}
     <hr>
 
     <div>
@@ -27,25 +29,23 @@
     </div>
 
     <section id="post-container">
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
-            <p class="beat-info">
-                <a href="#">beat name #1</a>
-                by
-                <a href="#">amazing artist #1</a>
-            </p>
-        </article>
+        {% if beats %}
+            {% for beat in beats %}
 
-        <article class="centered beat-post">
-            <a href="#" class="beat-play"></a>
+                <article class="centered beat-post">
+                    <a href="{% url 'play beat' beat.pk %}" class="beat-play"></a>
+                    <a class="beat-info" href="{% url 'beat details' beat.pk %}">{{ beat.title|truncatechars:15 }}</a>
+                    {% if beat.cover_image %}
+                        <img class="beat-browser-image" src="{{ beat.cover_image.url }}">
+                    {% else %}
+                        <img class="beat-browser-image" src="{% static 'default-cover.png' %}">
+                    {% endif %}
+                </article>
 
-            <p class="beat-info" readonly>
-                <a href="#">beat name #2</a>
-                by
-                <a href="#">amazing artist #2</a>
-            </p>
-        </article>
+            {% endfor %}
+        {% else %}
+            <h1 class="centered profile_sub_title sub_title"> Not yet created... </h1>
+        {% endif %}
 
-        <!-- <h1 class="centered profile_sub_title sub_title"> Not yet created... </h1> -->
     </section>
 {% endblock %}

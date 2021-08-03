@@ -1,6 +1,10 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
+
+
+UserModel = get_user_model()
 
 
 class BeatNotes(models.Model):
@@ -33,6 +37,10 @@ class Beat(models.Model):
     )
 
     # owner = Todo: add owner/profile system
+    owner = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+    )
 
     # likes = Todo: add views and likes system
 
