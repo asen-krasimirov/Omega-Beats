@@ -1,0 +1,42 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+{% block aditional_styles %}
+    <link rel="stylesheet" href="{% static 'form_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'authentication_styles.css' %}">
+{% endblock %}
+
+{% block main_content %}
+    <h2 id="browser_title" class="centered page_title">Registration</h2>
+    {% if form.errors %}
+        <div class="centered form-errors">
+            Your email is already used or not valid, or the passwords are not the same!
+            <br>
+            Please check your form and try again!
+        </div>
+    {% endif %}
+
+    <form method="post" class="custom-form">
+        {% csrf_token %}
+
+        <div class="block centered">
+            <label class="sub_title" for="id_email">Email:</label>
+            {{ form.email }}
+        </div>
+
+        <div class="block centered">
+            <label class="sub_title" for="id_password1">Password:</label>
+            {{ form.password1 }}
+        </div>
+
+        <div class="block centered">
+            <label class="sub_title" for="id_password2">Confirm Password:</label>
+            {{ form.password2 }}
+        </div>
+        <button id="register-button" class="centered main-button">Register</button>
+    </form>
+    <div class="centered sub_title" style="font-size: 30px;">
+        If you already have an account go login <a href="{% url 'login user' %}">here</a>!
+    </div>
+{% endblock %}

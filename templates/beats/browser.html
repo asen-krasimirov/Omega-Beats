@@ -1,5 +1,7 @@
 {% extends 'shared/base.html' %}
 
+{% load static %}
+
 {% block main_content %}
     <h2 id="browser_title" class="centered page_title">Beat Browser</h2>
 
@@ -17,7 +19,12 @@
                 <article class="centered beat-post">
                     <a href="{% url 'play beat' beat.pk %}" class="beat-play"></a>
                     <a class="beat-info" href="{% url 'beat details' beat.pk %}">{{ beat.title|truncatechars:15 }}</a>
-                    <img class="beat-browser-image" src="{{ beat.cover_image.url }}">
+                    {% if beat.cover_image %}
+                        <img class="beat-browser-image" src="{{ beat.cover_image.url }}">
+                    {% else %}
+                        <img class="beat-browser-image" src="{% static 'default-cover.png' %}">
+                    {% endif %}
+
                 </article>
             {% endfor %}
         {% else %}

@@ -1,7 +1,6 @@
+from django.conf import settings
+from django.core.validators import MinLengthValidator
 from django.db import models
-
-
-# from django.contrib.postgres.fields import ArrayField
 
 
 class BeatNotes(models.Model):
@@ -12,6 +11,9 @@ class Beat(models.Model):
     title = models.CharField(
         max_length=30,
         null=True,
+        validators=[
+            MinLengthValidator(5),
+        ],
     )
     description = models.TextField(
         max_length=500,
@@ -19,8 +21,9 @@ class Beat(models.Model):
     )
 
     cover_image = models.ImageField(
-        upload_to='images',
+        upload_to='covers',
         blank=True,
+        # default=settings.BASE_DIR / 'static/images/default_cover.jpg',
     )
 
     beat_notes = models.OneToOneField(

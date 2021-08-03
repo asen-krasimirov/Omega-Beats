@@ -205,4 +205,9 @@
   margin-top: 10px;
 }
 
+.user-profile-link {
+  text-decoration: none;
+  color: #FBE5E5;
+}
+
 /*# sourceMappingURL=details_style.css.map */

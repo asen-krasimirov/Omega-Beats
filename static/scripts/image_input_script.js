@@ -1,4 +1,4 @@
-const file = document.querySelector('#id_cover_image');
+const file = document.querySelector('#id_cover_image') || document.querySelector('#id_avatar_image');
 file.addEventListener('change', (e) => {
     // Get the selected file
     const [file] = e.target.files;

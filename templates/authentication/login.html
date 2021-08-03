@@ -1,0 +1,37 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+{% block aditional_styles %}
+    <link rel="stylesheet" href="{% static 'form_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'authentication_styles.css' %}">
+{% endblock %}
+
+{% block main_content %}
+    <h2 id="browser_title" class="centered page_title">Login</h2>
+    {% if form.errors %}
+        <div class="centered form-errors">
+            Your email or password are invalid!
+            <br>
+            Please check your form and try again!
+        </div>
+    {% endif %}
+
+    <form method="post" class="custom-form">
+        {% csrf_token %}
+
+        <div class="block centered">
+            <label class="sub_title" for="id_email">Email:</label>
+            {{ form.username }}
+        </div>
+
+        <div class="block centered">
+            <label class="sub_title" for="id_password">Password:</label>
+            {{ form.password }}
+        </div>
+        <button id="register-button" class="centered main-button">Login</button>
+    </form>
+    <div class="centered sub_title" style="font-size: 30px;">
+        If you don't have an account go register <a href="{% url 'register user' %}">here</a>!
+    </div>
+{% endblock %}

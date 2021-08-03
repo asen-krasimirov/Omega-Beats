@@ -16,7 +16,11 @@
                 </p>
                 
                 <div class="cover-info">
-                    <img class="beat-cover-image" src="{{ beat.cover_image.url }}">
+                    {% if beat.cover_image %}
+                        <img class="beat-cover-image" src="{{ beat.cover_image.url }}">
+                    {% else %}
+                        <img class="beat-cover-image" src="{% static 'default-cover.png' %}">
+                    {% endif %}
                     <div class="played-times">{{ beat.beatplay_set.count }} plays</div>
                     <div class="liked-times">1394 likes</div>
                 </div>
@@ -24,7 +28,7 @@
 
             <div class="owner-info">
                 <img class="profile-image owner-image" src="https://sm.mashable.com/t/mashable_in/feature/d/dogecoin-e/dogecoin-everything-you-need-to-know-about-the-cryptocurrenc_4ssb.h1280.jpg" alt="profile-picture">
-                <div class="sub_title owner-name">{ { owner.name } }</div>
+                <div class="sub_title owner-name"><a href="#" class="user-profile-link">{ { owner.name } }</a></div>
             </div>
 
             <div class="feed-back-btns">

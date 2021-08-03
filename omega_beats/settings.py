@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'omega_beats.common',
     'omega_beats.beats',
     'omega_beats.api',
+    'omega_beats.omega_beats_auth'
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'omega_beats.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'omega_beats_db',
+        'NAME': 'omega_db',
         'USER': 'postgres',
         'PASSWORD': 'passpost',
         'HOST': '127.0.0.1',
@@ -97,18 +98,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -134,6 +135,7 @@ STATICFILES_DIRS = [
     (BASE_DIR / 'static/styles/'),
     (BASE_DIR / 'static/scripts/'),
     (BASE_DIR / 'static/notes/'),
+    (BASE_DIR / 'static/images/'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -143,3 +145,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL = 'omega_beats_auth.OmegaBeatsUser'

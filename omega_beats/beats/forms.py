@@ -9,8 +9,14 @@ class RegisterBeatForm(BootstrapForm, forms.ModelForm):
         exclude = ('beat_notes',)
         widgets = {
             'title': forms.TextInput(
+                attrs={
+                    'placeholder': 'Enter 5-30 characters title...'
+                }
             ),
             'description': forms.Textarea(
+                attrs={
+                    'placeholder': 'Enter 1-500 characters description...'
+                }
             ),
             'cover_image': forms.FileInput(
                 attrs={

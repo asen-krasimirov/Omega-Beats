@@ -1,8 +1,11 @@
 import json
 
 import requests
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, ListView, TemplateView, DetailView
 from omega_beats.api.models import BeatNotes, Beat, BeatPlay
 from omega_beats.beats.forms import RegisterBeatForm
@@ -15,8 +18,12 @@ class BrowserView(ListView):
     template_name = 'beats/browser.html'
 
 
-class PianoRecorder(TemplateView):
+class PianoRecorder(LoginRequiredMixin, TemplateView):
     template_name = 'beats/piano_player.html'
+    login_url = reverse_lazy('login user')
+
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 def piano_beat_details_page(request, pk):
