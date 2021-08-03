@@ -1,4 +1,5 @@
 from core.views import is_post_liked
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from omega_beats.api.models import Beat
@@ -10,6 +11,7 @@ class HomePageView(TemplateView):
     template_name = 'common/index.html'
 
 
+@login_required
 def like_beat(request, pk):
     beat = Beat.objects.get(pk=pk)
 
@@ -26,6 +28,7 @@ def like_beat(request, pk):
     return redirect('beat details', pk)
 
 
+@login_required
 def comment_beat(request, pk):
     beat = Beat.objects.get(pk=pk)
     form = CommentForm(request.POST)
