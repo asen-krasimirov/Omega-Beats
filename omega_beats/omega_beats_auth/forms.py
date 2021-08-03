@@ -37,9 +37,9 @@ class ProfileForm(BootstrapForm, forms.ModelForm):
         files = self.files
 
         try:
-            image_url = os.path.join(settings.MEDIA_ROOT[:-1], profile_info.avatar_image.url[len('/media/'):])
+            avatar_image_url = os.path.join(settings.MEDIA_ROOT[:-1], profile_info.avatar_image.url[len('/media/'):])
             if commit and files:
-                os.remove(image_url)
+                os.remove(avatar_image_url)
         except (ValueError, FileNotFoundError):
             pass
 

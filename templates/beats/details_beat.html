@@ -40,14 +40,19 @@
     </div>
 
     <div class="feed-back-btns">
-        <a href="{% url 'like beat' beat.pk %}" class="main-button like-btn">
-            {% if not is_liked %}
-                Like
-            {% else %}
-                Dislike
-            {% endif %}
-        </a>
-        <a href="#" class="main-button feed-back-btn">Send Feedback</a>
+        {% if is_owner %}
+            <a href="{% url 'edit beat' beat.pk %}" class="main-button like-btn">Edit</a>
+            <a href="{% url 'delete beat' beat.pk %}" class="main-button like-btn">Delete</a>
+        {% else %}
+            <a href="{% url 'like beat' beat.pk %}" class="main-button like-btn">
+                {% if not is_liked %}
+                    Like
+                {% else %}
+                    Dislike
+                {% endif %}
+            </a>
+            <a href="#" class="main-button feed-back-btn">Send Feedback</a>
+        {% endif %}
         <a class="hidden-tag">&nbsp;</a>
     </div>
 
@@ -74,7 +79,10 @@
                                  src="{% static 'default-image.jpg' %}"
                                     {% endif %}
                                  alt="profile-picture">
-                            <div class="sub_title owner-name comment-owner-name"><a href="{% url 'profile page' comment.commenter_info.pk %}" style="text-decoration: none; color: inherit;">{{ comment.commenter_info.username }}</a></div>
+                            <div class="sub_title owner-name comment-owner-name"><a
+                                    href="{% url 'profile page' comment.commenter_info.pk %}"
+                                    style="text-decoration: none; color: inherit;">{{ comment.commenter_info.username }}</a>
+                            </div>
                         </div>
 
                         <div class="content-holder">

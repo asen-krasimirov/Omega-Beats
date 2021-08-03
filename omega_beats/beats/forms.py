@@ -1,6 +1,9 @@
+import os
+
 from core.forms import BootstrapForm
 from django import forms
-from omega_beats.api.models import BeatNotes, Beat
+from django.conf import settings
+from omega_beats.api.models import Beat
 
 
 class RegisterBeatForm(BootstrapForm, forms.ModelForm):
@@ -24,3 +27,16 @@ class RegisterBeatForm(BootstrapForm, forms.ModelForm):
                 },
             )
         }
+
+    def save(self, commit=True):
+        beat_info = Beat.objects.get(pk=self.instance.pk)
+        files = self.files
+
+        try:
+            cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat_info.cover_image.url[len('/media/'):])
+            if commit and files:
+                os.remove(cover_image_url)
+        except (ValueError, FileNotFoundError):
+            pass
+
+        return super().save(commit)

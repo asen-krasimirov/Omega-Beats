@@ -11,6 +11,8 @@ urlpatterns = [
     path('piano/', views.PianoRecorder.as_view(), name='piano page'),
     path('save/', views.save_beat_notes_page, name='save song'),
     path('create/<int:pk>', views.RegisterBeatView.as_view(), name='create beat'),
+    path('edit/<int:pk>', views.EditBeatView.as_view(), name='edit beat'),
+    path('delete/<int:pk>', views.delete_beat, name='delete beat'),
     path('play/<int:pk>', views.PianoPlayer.as_view(), name='play beat'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
