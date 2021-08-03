@@ -21,8 +21,8 @@
 }
 
 .circle, .profile-image {
-    height: 200px;
-    width: 200px;
+    height: 210px;
+    width: 210px;
     background-color: #bbb;
     border-radius: 50%;
     display: inline-block;

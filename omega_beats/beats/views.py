@@ -1,6 +1,7 @@
 import json
 
 import requests
+from core.views import is_post_liked
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -71,6 +72,14 @@ class PianoPlayer(DetailView):
         ).save()
         return super().get(request, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        owner = self.object.owner
+
+        context['owner_profile'] = Profile.objects.get(pk=owner.pk)
+
+        return context
+
 
 class BeatDetails(DetailView):
     model = Beat
@@ -79,5 +88,20 @@ class BeatDetails(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['profile'] = Profile.objects.get(pk=self.object.owner.pk)
+        beat = self.object
+
+        context['profile'] = Profile.objects.get(pk=beat.owner.pk)
+        context['is_liked'] = is_post_liked(beat.like_set.all(), self.request.user)
+
+        context['comments'] = []
+        for comment in beat.comment_set.all():
+            commenter_profile = Profile.objects.get(pk=comment.owner.pk)
+
+            comment_info = {
+                'commenter_info': commenter_profile,
+                'content': comment.content,
+            }
+
+            context['comments'].append(comment_info)
+
         return context

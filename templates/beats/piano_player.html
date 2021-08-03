@@ -29,8 +29,8 @@
                 <button class="save-button btn">Save</button>
             </form>
         {% else %}
-            <h3 class="sub_title beat-title">"{{ beat_info.title }}"</h3>
-            <h5 class="sub_title" style="margin-bottom: 50px;">by { { owner_name } }</h5>
+            <h3 class="sub_title beat-title" style="font-size: 100px;">" {{ beat_info.title }} "</h3>
+            <h5 class="sub_title" style="margin-bottom: 50px; font-size: 45px;">by <a href="{% url 'profile page' owner_profile.pk %}" style="color: inherit;">{{ owner_profile.username }}</a></h5>
             <a class="play-button btn show">Play</a>
             <a class="btn show" href="{% url 'beat details' beat_info.pk %}">Beat Info</a>
         {% endif %}

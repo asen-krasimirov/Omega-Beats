@@ -11,9 +11,9 @@ UserModel = get_user_model()
 @admin.register(UserModel)
 class OmegaBeatsUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password',)}),
         (_('Permissions'), {
-            'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions'),
+            'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions',),
         }),
         (_('Important dates'), {'fields': ('last_login',)}),
     )
@@ -23,10 +23,10 @@ class OmegaBeatsUserAdmin(UserAdmin):
             'fields': ('email', 'password1', 'password2'),
         }),
     )
-    list_display = ('email', 'is_staff')
-    list_filter = ('is_staff', 'is_superuser', 'groups')
+    list_display = ('email', 'pk', 'is_staff',)
+    list_filter = ('is_staff', 'is_superuser', 'groups',)
     search_fields = ('email',)
-    ordering = ('email',)
+    ordering = ('email', 'pk')
     filter_horizontal = ('groups', 'user_permissions',)
 
 
