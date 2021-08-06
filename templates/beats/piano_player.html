@@ -11,6 +11,7 @@
 <!-- Scripts -->
 {% block aditional_scripts %}
     <script src="{% static 'piano_script.js' %}" type="module"></script>
+    <script src="{% static 'map_piano_keys.js' %}" type="module"></script>
 {% endblock %}
 
 {% block main_content %}
@@ -22,6 +23,7 @@
     <div class="centered buttons">
         {% if not beat_info %}
             <button class="record-button btn">Record</button>
+            <button class="map-button btn">Map keys</button>
             <a class="play-button btn">Play</a>
             <form id="saveSongForm" method="post" action="{% url 'save song' %}">
                 {% csrf_token %}
@@ -37,25 +39,23 @@
 
     </div>
     <div class="piano">
-        <div data-note="C" class="key white"></div>
-        <div data-note="Cb" class="key black"></div>
-        <div data-note="D" class="key white"></div>
-        <div data-note="Db" class="key black"></div>
-{#        <div data-note="Eb" class="key black"></div>#}
-        <div data-note="E" class="key white"></div>
-        <div data-note="F" class="key white"></div>
-        <div data-note="Fb" class="key black"></div>
-        <div data-note="G" class="key white"></div>
-        <div data-note="Gb" class="key black"></div>
-        <div data-note="A" class="key white"></div>
-        <div data-note="Ab" class="key black"></div>
-        <div data-note="B" class="key white"></div>
-{#        <div data-note="Bb" class="key black"></div>#}
-        <div data-note="2C" class="key white"></div>
-        <div data-note="2Cb" class="key black"></div>
-        <div data-note="2D" class="key white"></div>
-        <div data-note="2Db" class="key black"></div>
-        <div data-note="2E" class="key white"></div>
+        <div data-note="C" class="key white"><div class="key-text">C<br>||<br>Z</div></div>
+        <div data-note="Cb" class="key black"><div class="key-text">C#<br>||<br>S</div></div>
+        <div data-note="D" class="key white"><div class="key-text">D<br>||<br>X</div></div>
+        <div data-note="Db" class="key black"><div class="key-text">D#<br>||<br>D</div></div>
+        <div data-note="E" class="key white"><div class="key-text">E<br>||<br>C</div></div>
+        <div data-note="F" class="key white"><div class="key-text">F<br>||<br>V</div></div>
+        <div data-note="Fb" class="key black"><div class="key-text">F#<br>||<br>G</div></div>
+        <div data-note="G" class="key white"><div class="key-text">G<br>||<br>B</div></div>
+        <div data-note="Gb" class="key black"><div class="key-text">G#<br>||<br>H</div></div>
+        <div data-note="A" class="key white"><div class="key-text">A<br>||<br>N</div></div>
+        <div data-note="Ab" class="key black"><div class="key-text">A#<br>||<br>J</div></div>
+        <div data-note="B" class="key white"><div class="key-text">B<br>||<br>M</div></div>
+        <div data-note="2C" class="key white"><div class="key-text">C<br>||<br>,</div></div>
+        <div data-note="2Cb" class="key black"><div class="key-text">C#<br>||<br>L</div></div>
+        <div data-note="2D" class="key white"><div class="key-text">D<br>||<br>.</div></div>
+        <div data-note="2Db" class="key black"><div class="key-text">D#<br>||<br>;</div></div>
+        <div data-note="2E" class="key white"><div class="key-text">E<br>||<br>/</div></div>
     </div>
 
     <audio id="C" src="{% static 'C.mp3' %}"></audio>
