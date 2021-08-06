@@ -18,6 +18,18 @@ class BrowserView(ListView):
     context_object_name = 'beats'
     # ordering = ['-date_created']
     template_name = 'beats/browser.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        query = self.request.GET.get('beat_name')
+        if query:
+            object_list = Beat.objects.filter(
+                title__icontains=query,
+            )
+        else:
+            object_list = Beat.objects.all()
+
+        return object_list
 
 
 class PianoRecorder(LoginRequiredMixin, TemplateView):

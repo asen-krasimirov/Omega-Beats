@@ -1,12 +1,11 @@
 from django.contrib.auth import get_user_model, login, authenticate, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, FormView, CreateView, UpdateView
+from django.views.generic import DetailView, CreateView, UpdateView
 from omega_beats.omega_beats_auth.forms import RegisterUserForm, LoginUserForm, ProfileForm
-from omega_beats.omega_beats_auth.models import Profile, OmegaBeatsUser
+from omega_beats.omega_beats_auth.models import Profile
 
 UserModel = get_user_model()
 

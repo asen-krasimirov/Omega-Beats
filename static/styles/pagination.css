@@ -1,0 +1,23 @@
+@keyframes pagination-pulse {
+    0% {
+        color: #FBE5E5;
+    }
+    15% {
+        color: rgba(251, 229, 229, 0.73);
+    }
+    20% {
+        color: rgba(251, 229, 229, 0.6);;
+    }
+}
+
+.pagination span a {
+    text-decoration: none;
+    color: #FBE5E5;
+
+    font-size: 82px;
+}
+
+.pagination span a:hover {
+    animation: 1s ease 0s pagination-pulse;
+    color: rgba(251, 229, 229, 0.54);
+}

@@ -2,17 +2,22 @@
 
 {% load static %}
 
+{% block aditional_styles %}
+    <link rel="stylesheet" href="{% static 'pagination.css' %}">
+{% endblock %}
+
 {% block main_content %}
     <h2 id="browser_title" class="centered page_title">Beat Browser</h2>
 
     <a class="centered main-button create-button" id="create-link" href="{% url 'piano page' %}">Create your own
         beat!</a>
 
-    <form class="search_form">
-        <input class="search_field centered main-button" type="text" placeholder="Enter beat name here...">
+    <form class="search_form" method="get">
+        <input class="search_field centered main-button" type="text" name="beat_name" placeholder="Enter beat name here...">
         <input class="search_button centered main-button" type="submit" value="Search by beat name">
     </form>
 
+    {% include 'shared/pagination.html' %}
     <section id="post-container">
         {% if beats %}
             {% for beat in beats %}
@@ -33,5 +38,6 @@
                 Click to add!</a>
         {% endif %}
 
+        <a class="hidden-tag"> .</a>
     </section>
 {% endblock %}
