@@ -27,11 +27,11 @@ def beatList(request):
     return Response(serializer.data)
 
 
-@api_view(['GET'])
-def beatDetail(request, pk):
-    beat = BeatNotes.objects.get(pk=pk)
-    serializer = BeatSerializer(beat, many=False)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def beatDetail(request, pk):
+#     beat = BeatNotes.objects.get(pk=pk)
+#     serializer = BeatSerializer(beat, many=False)
+#     return Response(serializer.data)
 
 
 @api_view(['POST'])
@@ -44,20 +44,20 @@ def beatCreate(request):
     return Response(serializer.data)
 
 
-@api_view(['POST'])
-def beatUpdate(request, pk):
-    beat = BeatNotes.objects.get(pk=pk)
-    serializer = BeatSerializer(data=request.data, instance=beat)
+# @api_view(['POST'])
+# def beatUpdate(request, pk):
+#     beat = BeatNotes.objects.get(pk=pk)
+#     serializer = BeatSerializer(data=request.data, instance=beat)
+#
+#     if serializer.is_valid():
+#         serializer.save()
+#
+#     return Response(serializer.data)
 
-    if serializer.is_valid():
-        serializer.save()
 
-    return Response(serializer.data)
-
-
-@api_view(['DELETE'])
-def beatDelete(request, pk):
-    beat = BeatNotes.objects.get(pk=pk)
-    beat.delete()
-
-    return Response("Item successfully deleted!")
+# @api_view(['DELETE'])
+# def beatDelete(request, pk):
+#     beat = BeatNotes.objects.get(pk=pk)
+#     beat.delete()
+#
+#     return Response("Item successfully deleted!")

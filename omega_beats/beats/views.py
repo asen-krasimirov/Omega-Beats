@@ -59,7 +59,9 @@ class RegisterBeatView(UpdateView):
     model = Beat
     form_class = RegisterBeatForm
     template_name = 'beats/create_beat.html'
-    success_url = reverse_lazy('browser page')
+
+    def get_success_url(self):
+        return reverse_lazy('beat details', args=(self.object.pk,))
 
 
 class EditBeatView(UpdateView):
