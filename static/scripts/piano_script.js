@@ -96,7 +96,6 @@ function recordNote(note) {
     })
 }
 
-
 function embedSong() {
     if (songNotesInput) songNotesInput.value = JSON.stringify(songNotes);
 }

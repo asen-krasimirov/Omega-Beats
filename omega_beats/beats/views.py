@@ -8,8 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, ListView, TemplateView, DetailView
-from omega_beats.api.models import BeatNotes, Beat, BeatPlay
 from omega_beats.beats.forms import RegisterBeatForm
+from omega_beats.beats.models import Beat, BeatNotes, BeatPlay
 from omega_beats.omega_beats_auth.models import Profile
 
 
@@ -137,9 +137,10 @@ def delete_beat(request, pk):
     beat = Beat.objects.get(pk=pk)
     beat_notes = beat.beat_notes
 
-    cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat.cover_image.url[len('/media/'):])
-    if os.path.exists(cover_image_url):
-        os.remove(cover_image_url)
+    if beat.cover_image:
+        cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat.cover_image.url[len('/media/'):])
+        if os.path.exists(cover_image_url):
+            os.remove(cover_image_url)
 
     beat.delete()
     beat_notes.delete()

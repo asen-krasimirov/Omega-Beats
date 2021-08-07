@@ -3,7 +3,7 @@ import os
 from core.forms import BootstrapForm
 from django import forms
 from django.conf import settings
-from omega_beats.api.models import Beat
+from omega_beats.beats.models import Beat
 
 
 class RegisterBeatForm(BootstrapForm, forms.ModelForm):

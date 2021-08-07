@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     'omega_beats.common',
     'omega_beats.beats',
-    'omega_beats.api',
+    # 'omega_beats.api',
     'omega_beats.omega_beats_auth'
 ]
 
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'omega_beats.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'omega_db',
+        'NAME': 'beats_db',
         'USER': 'postgres',
         'PASSWORD': 'passpost',
         'HOST': '127.0.0.1',

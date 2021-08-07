@@ -2,7 +2,7 @@ from core.views import is_post_liked
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
-from omega_beats.api.models import Beat
+from omega_beats.beats.models import Beat
 from omega_beats.common.forms import CommentForm
 from omega_beats.common.models import Like, Comment
 

@@ -10,8 +10,10 @@ def no_bad_words(data):
     data = data.split()
 
     for word in data:
-        if any(bad_word in word.lower() for bad_word in bad_words):
-            raise ValidationError('Do not use offensive words!')
+        # if any(bad_word in word.lower() for bad_word in bad_words):
+        for bad_word in bad_words:
+            if bad_word in word.lower():
+                raise ValidationError('Do not use offensive words!')
 
 
 bad_words = ['arse',
@@ -24,8 +26,6 @@ bad_words = ['arse',
              'bugger',
              'bullshit',
              'child-fucker',
-             'Christ on a bike',
-             'Christ on a cracker',
              'cocksucker',
              'crap',
              'cunt',
@@ -36,16 +36,8 @@ bad_words = ['arse',
              'fuck',
              'goddamn',
              'godsdamn',
-             'hell',
              'holy shit',
              'horseshit',
-             'Jesus Christ',
-             'Jesus fuck',
-             'Jesus H. Christ',
-             'Jesus Harold Christ',
-             'Jesus wept',
-             'Jesus, Mary and Joseph',
-             'Judas Priest',
              'motherfucker',
              'nigga',
              'piss',

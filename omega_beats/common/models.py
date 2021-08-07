@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from omega_beats.api.models import Beat
+from omega_beats.beats.models import Beat
 
 UserModel = get_user_model()
 
