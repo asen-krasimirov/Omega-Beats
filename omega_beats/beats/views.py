@@ -22,6 +22,7 @@ class BrowserView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('beat_name')
+
         if query:
             object_list = Beat.objects.filter(
                 title__icontains=query,
@@ -40,14 +41,25 @@ class PianoRecorder(LoginRequiredMixin, TemplateView):
         return super().dispatch(*args, **kwargs)
 
 
-def piano_beat_details_page(request, pk):
-    song_details = requests.get(url=f'api/beat-details/{pk}/')
+class PianoPlayer(DetailView):
+    model = Beat
+    context_object_name = 'beat_info'
+    template_name = 'beats/piano_player.html'
 
-    context = {
-        'beat': song_details,
-    }
+    def get(self, request, **kwargs):
+        beat = Beat.objects.get(pk=kwargs['pk'])
+        BeatPlay(
+            beat=beat,
+        ).save()
+        return super().get(request, **kwargs)
 
-    return render(request, 'beats/piano_player.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        owner = self.object.owner
+
+        context['owner_profile'] = Profile.objects.get(pk=owner.pk)
+
+        return context
 
 
 def save_beat_notes_page(request):
@@ -85,27 +97,6 @@ class EditBeatView(UpdateView):
         return reverse('beat details', args=(self.object.pk,))
 
 
-class PianoPlayer(DetailView):
-    model = Beat
-    context_object_name = 'beat_info'
-    template_name = 'beats/piano_player.html'
-
-    def get(self, request, **kwargs):
-        beat = Beat.objects.get(pk=kwargs['pk'])
-        BeatPlay(
-            beat=beat,
-        ).save()
-        return super().get(request, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        owner = self.object.owner
-
-        context['owner_profile'] = Profile.objects.get(pk=owner.pk)
-
-        return context
-
-
 class BeatDetails(DetailView):
     model = Beat
     context_object_name = 'beat'
@@ -117,6 +108,7 @@ class BeatDetails(DetailView):
 
         context['profile'] = Profile.objects.get(pk=beat.owner.pk)
         context['is_liked'] = is_post_liked(beat.like_set.all(), self.request.user)
+        context['is_owner'] = beat.owner.pk == self.request.user.pk
 
         context['comments'] = []
         for comment in beat.comment_set.all():
@@ -129,13 +121,15 @@ class BeatDetails(DetailView):
 
             context['comments'].append(comment_info)
 
-        context['is_owner'] = beat.owner.pk == self.request.user.pk
         return context
 
 
 def delete_beat(request, pk):
     beat = Beat.objects.get(pk=pk)
     beat_notes = beat.beat_notes
+
+    if request.user.pk != beat.owner.pk:
+        return redirect('beat details', beat.pk)
 
     if beat.cover_image:
         cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat.cover_image.url[len('/media/'):])

@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-from omega_beats.api.models import Beat, BeatNotes
+from omega_beats.beats.models import Beat, BeatNotes
 
 UserModel = get_user_model()
 
@@ -42,17 +42,14 @@ class BeatModelTests(TestCase):
         self.assertEquals(error.exception.messages[0], 'Do not use offensive words!')
 
     def test_beatCreate_whenValidTitleAndValidDescription_shouldCreateIt(self):
-        beat_notes = BeatNotes(
+        beat_notes = BeatNotes.objects.create(
             beat_notes={'note': 'test'}
         )
 
-        owner = UserModel(
+        owner = UserModel.objects.create_user(
             email='test@test.test',
             password='TestAtTesting123',
         )
-
-        beat_notes.save()
-        owner.save()
 
         beat = Beat(
             title='Correct',

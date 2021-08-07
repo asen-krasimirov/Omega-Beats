@@ -39,11 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework',
-
     'omega_beats.common',
     'omega_beats.beats',
-    # 'omega_beats.api',
     'omega_beats.omega_beats_auth'
 ]
 

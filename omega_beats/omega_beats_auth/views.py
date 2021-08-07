@@ -7,6 +7,7 @@ from django.views.generic import DetailView, CreateView, UpdateView
 from omega_beats.omega_beats_auth.forms import RegisterUserForm, LoginUserForm, ProfileForm
 from omega_beats.omega_beats_auth.models import Profile
 
+
 UserModel = get_user_model()
 
 
