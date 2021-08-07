@@ -54,13 +54,13 @@ class Profile(models.Model):
     username = models.CharField(
         max_length=30,
         blank=True,
-        default='{ { username } }',
+        default='default username',
     )
 
     description = models.TextField(
         max_length=500,
         blank=True,
-        default='{ { description } }',
+        default='default description',
     )
 
     avatar_image = models.ImageField(

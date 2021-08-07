@@ -17,6 +17,13 @@
             Some of the registration requirements are not met!
             <br>
             Please check your form and try again!
+             <ul class="centered errors">
+                {% for sender, subject in form.errors.items %}
+                    {% for message in subject.data.0.messages %}
+                        - {{ message }}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
         </div>
     {% endif %}
     <form method="post" enctype="multipart/form-data" class="custom-form">

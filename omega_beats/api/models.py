@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
-
+from validators.beat_validators import first_latter_capital, no_bad_words
 
 UserModel = get_user_model()
 
@@ -17,11 +17,18 @@ class Beat(models.Model):
         null=True,
         validators=[
             MinLengthValidator(5),
+            first_latter_capital,
+            no_bad_words,
         ],
+        unique=True,
     )
+
     description = models.TextField(
         max_length=500,
         null=True,
+        validators=[
+            no_bad_words
+        ],
     )
 
     cover_image = models.ImageField(
@@ -36,13 +43,10 @@ class Beat(models.Model):
         primary_key=True,
     )
 
-    # owner = Todo: add owner/profile system
     owner = models.ForeignKey(
         UserModel,
         on_delete=models.CASCADE,
     )
-
-    # likes = Todo: add views and likes system
 
     def __str__(self):
         return f'{self.pk}, {self.title}'
