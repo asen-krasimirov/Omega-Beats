@@ -31,7 +31,6 @@
     <section id="post-container">
         {% if beats %}
             {% for beat in beats %}
-
                 <article class="centered beat-post">
                     <a href="{% url 'play beat' beat.pk %}" class="beat-play"></a>
                     <a class="beat-info" href="{% url 'beat details' beat.pk %}">{{ beat.title|truncatechars:15 }}</a>
@@ -41,10 +40,11 @@
                         <img class="beat-browser-image" src="{% static 'default-cover.png' %}">
                     {% endif %}
                 </article>
-
             {% endfor %}
+            {% include 'shared/footer.html' %}
         {% else %}
-            <h1 class="centered profile_sub_title sub_title" style="margin-top: 50px;"> Not yet created... </h1>
+            <h1 class="centered profile_sub_title sub_title" style="margin-top: 50px; margin-bottom: 210px;"> Not yet created... </h1>
+            {% include 'shared/footer.html' %}
         {% endif %}
 
     </section>

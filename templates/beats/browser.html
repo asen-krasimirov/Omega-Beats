@@ -17,11 +17,12 @@
         <input class="search_button centered main-button" type="submit" value="Search by beat name">
     </form>
 
-    {% include 'shared/pagination.html' %}
+    {% if beats %}
+        {% include 'shared/pagination.html' %}
+    {% endif %}
     <section id="post-container">
         {% if beats %}
             {% for beat in beats %}
-
                 <article class="centered beat-post">
                     <a href="{% url 'play beat' beat.pk %}" class="beat-play"></a>
                     <a class="beat-info" href="{% url 'beat details' beat.pk %}">{{ beat.title|truncatechars:15 }}</a>
@@ -31,13 +32,12 @@
                         <img class="beat-browser-image" src="{% static 'default-cover.png' %}">
                     {% endif %}
                 </article>
-
             {% endfor %}
+            {% include 'shared/footer.html' %}
         {% else %}
-            <a  class="main-button create-button" style="width: 700px; margin-left: 500px;" href="{% url 'piano page' %}">There are no beats added yet!
-                Click to add!</a>
+            <h1  class="sub_title" style="width: 700px; left: 31.5%; font-family: 'Pacifico', cursive; text-align: center; margin-bottom: 80px;" href="{% url 'piano page' %}">There are no beats added yet!</h1>
+            {% include 'shared/footer.html' %}
         {% endif %}
 
-        <a class="hidden-tag"> .</a>
     </section>
 {% endblock %}

@@ -1,7 +1,43 @@
 {% extends 'shared/base.html' %}
 
+{% load static %}
+
+{% block aditional_styles %}
+    <link rel="stylesheet" href={% static 'home.css' %}>
+{% endblock %}
+
 {% block main_content %}
     <h1 class="centered page_title">OMEGA BEATS</h1>
     <h2 class="centered sub_title">Amazing beats made easy and fast!</h2>
     <button class="main-button centered"><a href="{% url 'browser page' %}">Get Started</a></button>
+
+    <hr style="margin-top: 100px; margin-bottom: 140px;">
+
+    <section class="centered step-holder">
+        <div class="sub_title" style="font-size: 80px;">Step 1 - Create</div>
+        <img src="{% static 'recorder_sample.gif' %}" class="sample-gif" />
+        <p class="sub_title step-info" style="font-size: 30px;">First record you performance using the build-in virtual piano...<br>Play famous songs or create your original music!</p>
+    </section>
+
+    <hr style="margin-bottom: 140px;">
+
+    <section class="centered step-holder">
+        <div class="sub_title" style="font-size: 80px;">Step 2 - Upload</div>
+        <img src="{% static 'browser_sample.gif' %}" class="sample-gif"/>
+        <p class="sub_title step-info" style="font-size: 30px;">Upload your creation for other users to enjoy, like and
+            send feedback!<br>All in one Web Application!</p>
+    </section>
+
+    <hr style="margin-bottom: 140px;">
+
+    <section class="centered step-holder">
+        <div class="sub_title" style="font-size: 80px;">Step 3 - Enjoy!</div>
+        <img src="{% static 'details_sample.gif' %}" class="sample-gif" style="margin-left: 75px;"/>
+        <p class="sub_title step-info" style="font-size: 30px;">Browser through other user's creations which you can
+            listen, like, and comment!<br>You can also search creations by name and view other user's profiles for more
+            of their content!</p>
+    </section>
+
+    <button class="main-button centered" style="margin-top: 50px; margin-bottom: 50px;"><a href="{% url 'browser page' %}">Get Started</a></button>
+    {% include 'shared/footer.html' %}
 {% endblock %}
