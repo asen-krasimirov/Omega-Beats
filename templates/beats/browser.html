@@ -9,12 +9,11 @@
 {% block main_content %}
     <h2 id="browser_title" class="centered page_title">Beat Browser</h2>
 
-    <a class="centered main-button create-button" id="create-link" href="{% url 'piano page' %}">Create your own
-        beat!</a>
+    <a class="centered main-button create-button" id="create-link" href="{% url 'piano page' %}">Create your own music!</a>
 
     <form class="search_form" method="get">
-        <input class="search_field centered main-button" type="text" name="beat_name" placeholder="Enter beat name here...">
-        <input class="search_button centered main-button" type="submit" value="Search by beat name">
+        <input class="search_field centered main-button" type="text" name="beat_name" placeholder="Search by name...">
+        <input class="search_button centered main-button" type="submit" value="Search">
     </form>
 
     {% if beats %}
