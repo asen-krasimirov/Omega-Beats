@@ -21,7 +21,7 @@ class ProfilePageView(DetailView):
         context['is_owner'] = self.object.pk == self.request.user.pk
 
         owner = UserModel.objects.get(pk=self.object.pk)
-        context['beats'] = owner.beat_set.all()
+        context['beats'] = owner.beat_set.all()[::-1]
         return context
 
 

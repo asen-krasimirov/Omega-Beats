@@ -1,11 +1,10 @@
 import json
 import os
 
-import requests
 from core.views import is_post_liked
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, ListView, TemplateView, DetailView
 from omega_beats.beats.forms import RegisterBeatForm
@@ -30,7 +29,7 @@ class BrowserView(ListView):
         else:
             object_list = Beat.objects.all()
 
-        return object_list
+        return object_list[::-1]
 
 
 class PianoRecorder(LoginRequiredMixin, TemplateView):
@@ -111,7 +110,7 @@ class BeatDetails(DetailView):
         context['is_owner'] = beat.owner.pk == self.request.user.pk
 
         context['comments'] = []
-        for comment in beat.comment_set.all():
+        for comment in beat.comment_set.all()[::-1]:
             commenter_profile = Profile.objects.get(pk=comment.owner.pk)
 
             comment_info = {
