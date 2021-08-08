@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="{% static 'beat_details.css' %}">
 {% endblock %}
 
+{% block aditional_scripts %}
+    <script src="{% static 'copy_link.js' %}" type="module"></script>
+{% endblock %}
+
 {% block main_content %}
     <div id="beat-play-holder" class="horizontally-aligned"><a href="{% url 'play beat' beat.pk %}"
                                                                class="beat-play details-beat-player"></a>&nbsp;
@@ -51,7 +55,8 @@
                     Dislike
                 {% endif %}
             </a>
-            <a href="#" class="main-button feed-back-btn">Report</a>
+            <a href="javascript:void(0)" class="main-button feed-back-btn">Share</a>
+            <textarea id="url-holder" style="display: none;"></textarea>
         {% endif %}
         <a class="hidden-tag">&nbsp;</a>
     </div>
