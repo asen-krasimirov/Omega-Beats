@@ -130,6 +130,7 @@ STATICFILES_DIRS = [
     (BASE_DIR / 'static/notes/'),
     (BASE_DIR / 'static/images/'),
     (BASE_DIR / 'static/gifs/'),
+    (BASE_DIR / 'static/favicons/'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

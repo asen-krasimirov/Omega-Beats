@@ -6,6 +6,10 @@
 
         {% load static %}
 
+        <!-- Favicon Config -->
+        <link rel="icon" type="image/png" href="{% static 'favicon-16x16.png' %}" sizes="16x16">
+        <link rel="icon" type="image/png" href="{% static 'favicon-32x32.png' %}" sizes="32x32">
+
         <!-- Custom Css Styling-->
         <link rel="stylesheet" href={% static 'main.css' %}>
         <link rel="stylesheet" href={% static 'browser.css' %}>
@@ -21,7 +25,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Patua+One&family=Roboto:wght@900&display=swap" rel="stylesheet">
 
         <!-- JS Scripts -->
-
         {% block aditional_scripts %}
         {% endblock %}
 
