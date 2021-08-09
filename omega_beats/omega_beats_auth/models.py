@@ -10,6 +10,7 @@ class OmegaBeatManager(BaseUserManager):
         """
         Creates and saves a User with the given email and password.
         """
+
         if not email:
             raise ValueError('The given email must be set')
         email = self.normalize_email(email)
@@ -37,6 +38,10 @@ class OmegaBeatManager(BaseUserManager):
 
 
 class OmegaBeatsUser(AbstractBaseUser, PermissionsMixin):
+    """
+    Extending the UserModel to use email and password for authentication.
+    """
+
     email = models.EmailField(
         unique=True
     )
@@ -51,6 +56,10 @@ class OmegaBeatsUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Profile(models.Model):
+    """
+    User's profile entity used to store all the information displayed to the other users.
+    """
+
     username = models.CharField(
         max_length=30,
         blank=True,

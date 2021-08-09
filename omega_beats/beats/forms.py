@@ -7,6 +7,10 @@ from omega_beats.beats.models import Beat
 
 
 class RegisterBeatForm(BootstrapForm, forms.ModelForm):
+    """
+    A form used to get user information for the registered beat.
+    """
+
     class Meta:
         model = Beat
         exclude = ('beat_notes', 'owner')
@@ -29,6 +33,11 @@ class RegisterBeatForm(BootstrapForm, forms.ModelForm):
         }
 
     def save(self, commit=True):
+        """
+        An extension to the default save() method which deletes the previous cover image of the beat.
+        And deletes the image upon entity deletion.
+        """
+
         beat_info = Beat.objects.get(pk=self.instance.pk)
         files = self.files
 

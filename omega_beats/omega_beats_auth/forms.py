@@ -7,20 +7,33 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from omega_beats.omega_beats_auth.models import Profile
 
+
 UserModel = get_user_model()
 
 
 class RegisterUserForm(BootstrapForm, UserCreationForm):
+    """
+    Form used to get register the user.
+    """
+
     class Meta:
         model = UserModel
         fields = ('email',)
 
 
 class LoginUserForm(BootstrapForm, AuthenticationForm):
+    """
+    Form used to log in the user. The username is and EmailField.
+    """
+
     username = forms.EmailField()
 
 
 class ProfileForm(BootstrapForm, forms.ModelForm):
+    """
+    A form used to get user information for his profile.
+    """
+
     class Meta:
         model = Profile
         exclude = ('user',)
@@ -33,6 +46,10 @@ class ProfileForm(BootstrapForm, forms.ModelForm):
         }
 
     def save(self, commit=True):
+        """
+        An extension to the default save() method which deletes the previous avatar image of the profile.
+        """
+
         profile_info = Profile.objects.get(pk=self.instance.pk)
         files = self.files
 

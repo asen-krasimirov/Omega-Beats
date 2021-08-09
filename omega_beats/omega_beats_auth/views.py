@@ -12,11 +12,20 @@ UserModel = get_user_model()
 
 
 class ProfilePageView(DetailView):
+    """
+    A view that displays user's profile information.
+    Also all the user's beats.
+    """
+
     model = Profile
     context_object_name = 'profile'
     template_name = 'common/profile.html'
 
     def get_context_data(self, **kwargs):
+        """
+        All owner's beats are added to the context as well as if the user is the owner.
+        """
+
         context = super().get_context_data(**kwargs)
         context['is_owner'] = self.object.pk == self.request.user.pk
 
@@ -26,6 +35,11 @@ class ProfilePageView(DetailView):
 
 
 class ProfileUpdateView(UpdateView):
+    """
+    A view used to set and edit user's profile information.
+    Redirects to profile's page.
+    """
+
     model = Profile
     template_name = 'common/edit_profile.html'
     form_class = ProfileForm
@@ -35,6 +49,11 @@ class ProfileUpdateView(UpdateView):
 
 
 class RegistrationUserView(CreateView):
+    """
+    A view used to register a new user and log him in.
+    Redirects to ProfileUpdateView.
+    """
+
     model = UserModel
     template_name = 'authentication/register.html'
     form_class = RegisterUserForm
@@ -54,6 +73,11 @@ class RegistrationUserView(CreateView):
 
 
 class LoginUserView(LoginView):
+    """
+    A view used to log the user in.
+    Redirects to the browser page.
+    """
+
     template_name = 'authentication/login.html'
     form_class = LoginUserForm
 
@@ -62,5 +86,10 @@ class LoginUserView(LoginView):
 
 
 def logout_user(request):
+    """
+    A view used to log the user out.
+    Redirects to the home page.
+    """
+
     logout(request)
     return redirect('home page')

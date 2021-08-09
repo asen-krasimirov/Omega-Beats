@@ -10,6 +10,10 @@ UserModel = get_user_model()
 
 @admin.register(UserModel)
 class OmegaBeatsUserAdmin(UserAdmin):
+    """
+    Adding the extended user to the administration.
+    """
+
     fieldsets = (
         (None, {'fields': ('email', 'password',)}),
         (_('Permissions'), {

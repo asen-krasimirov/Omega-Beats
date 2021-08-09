@@ -13,13 +13,21 @@ from omega_beats.omega_beats_auth.models import Profile
 
 
 class BrowserView(ListView):
+    """
+    A view that displays a list of all beats in the database.
+    """
+
     model = Beat
     context_object_name = 'beats'
-    # ordering = ['-date_created']
     template_name = 'beats/browser.html'
     paginate_by = 12
 
     def get_queryset(self):
+        """
+        If the search form is used displays only the beats
+        with matching titles with the search form data.
+        """
+
         query = self.request.GET.get('beat_name')
 
         if query:
@@ -33,26 +41,42 @@ class BrowserView(ListView):
 
 
 class PianoRecorder(LoginRequiredMixin, TemplateView):
+    """
+    A view that displays the virtual piano, used to record beats.
+    """
+
     template_name = 'beats/piano_player.html'
     login_url = reverse_lazy('login user')
 
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
 
 class PianoPlayer(DetailView):
+    """
+    A view that displays the virtual piano, loaded with notes of a selected beat.
+    Here the beats can be played.
+    """
+
     model = Beat
     context_object_name = 'beat_info'
     template_name = 'beats/piano_player.html'
 
     def get(self, request, **kwargs):
+        """
+        A beat play is saved every time the beat player is opened.
+        """
+
         beat = Beat.objects.get(pk=kwargs['pk'])
         BeatPlay(
             beat=beat,
         ).save()
+
         return super().get(request, **kwargs)
 
     def get_context_data(self, **kwargs):
+        """
+        The user profile is added to the context to display its username
+        and link to the profile.
+        """
+
         context = super().get_context_data(**kwargs)
         owner = self.object.owner
 
@@ -62,6 +86,10 @@ class PianoPlayer(DetailView):
 
 
 def save_beat_notes_page(request):
+    """
+    A view that saves the beat's notes, creates a beat entity, and redirects to RegisterBeatView.
+    """
+
     beat_notes_data = json.loads(request.POST['notesData'])
 
     new_beat_notes = BeatNotes(
@@ -79,6 +107,11 @@ def save_beat_notes_page(request):
 
 
 class RegisterBeatView(UpdateView):
+    """
+    A view in which the user gives the beat title, description, and cover image.
+    Redirects to the beat details upon submitting.
+    """
+
     model = Beat
     form_class = RegisterBeatForm
     template_name = 'beats/create_beat.html'
@@ -88,6 +121,11 @@ class RegisterBeatView(UpdateView):
 
 
 class EditBeatView(UpdateView):
+    """
+    A view where the owner of the beat can edit the title, description, and cover of the beat.
+    Redirects to the beat details upon submitting.
+    """
+
     model = Beat
     form_class = RegisterBeatForm
     template_name = 'beats/edit_beat.html'
@@ -97,11 +135,22 @@ class EditBeatView(UpdateView):
 
 
 class BeatDetails(DetailView):
+    """
+    A view that displays the beat's details where the owner can edit and delete the beat.
+    And other users can like, share, and comment on it.
+    """
+
     model = Beat
     context_object_name = 'beat'
     template_name = 'beats/details_beat.html'
 
     def get_context_data(self, **kwargs):
+        """
+        The owner's profile is added to the context as well as if the user has liked the beat,
+        and if he is the owner or not.
+        Comments and the information of their owners are too added to the context.
+        """
+
         context = super().get_context_data(**kwargs)
         beat = self.object
 
@@ -124,6 +173,10 @@ class BeatDetails(DetailView):
 
 
 def delete_beat(request, pk):
+    """
+    In this view, if the owner is authenticated when the beat gets deleted.
+    """
+
     beat = Beat.objects.get(pk=pk)
     beat_notes = beat.beat_notes
 

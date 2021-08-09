@@ -13,6 +13,11 @@ class HomePageView(TemplateView):
 
 @login_required
 def like_beat(request, pk):
+    """
+    In this view, a like entity on the beat is saved if the user hasn't already liked it
+    and the like entity gets deleted if the user has liked it.
+    """
+
     beat = Beat.objects.get(pk=pk)
 
     is_liked = is_post_liked(beat.like_set.all(), request.user)
@@ -30,6 +35,10 @@ def like_beat(request, pk):
 
 @login_required
 def comment_beat(request, pk):
+    """
+    A view where a comment is added to the given beat.
+    """
+
     beat = Beat.objects.get(pk=pk)
     form = CommentForm(request.POST)
 

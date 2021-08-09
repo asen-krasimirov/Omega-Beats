@@ -7,10 +7,18 @@ UserModel = get_user_model()
 
 
 class BeatNotes(models.Model):
+    """
+    Data entity that stores the notes of the beat.
+    """
+
     beat_notes = models.JSONField()
 
 
 class Beat(models.Model):
+    """
+    The main data entity in the application.
+    """
+
     title = models.CharField(
         max_length=30,
         null=True,
@@ -52,6 +60,10 @@ class Beat(models.Model):
 
 
 class BeatPlay(models.Model):
+    """
+    Data entity which stores the notes of the beat.
+    """
+
     beat = models.ForeignKey(
         Beat,
         on_delete=models.CASCADE,

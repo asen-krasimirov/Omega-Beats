@@ -1,5 +1,9 @@
 
 class BootstrapForm:
+    """
+    A mixin which gives fields of the forms HTML classes for styling.
+    """
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__add_default_style()
