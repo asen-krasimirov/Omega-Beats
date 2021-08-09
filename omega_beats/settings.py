@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-)xbm6n6whd#-+mi9j4%n-l-n9jj*74ws#mz9v8w5%nthmw#i91'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -93,18 +93,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.omega_beats_auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.omega_beats_auth.password_validation.MinimumLengthValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.MinimumLengthValidator',
+    # },
     # {
     #     'NAME': 'django.contrib.omega_beats_auth.password_validation.CommonPasswordValidator',
     # },
-    {
-        'NAME': 'django.contrib.omega_beats_auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.omega_beats_auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 # Internationalization
