@@ -130,3 +130,6 @@ dmypy.json
 
 # staticfiles content
 staticfiles/*
+
+# staticfiles content
+staticfiles/*
