@@ -13,7 +13,9 @@ SECRET_KEY = 'django-insecure-)xbm6n6whd#-+mi9j4%n-l-n9jj*74ws#mz9v8w5%nthmw#i91
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'omega-beats.herokuapp.com',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
