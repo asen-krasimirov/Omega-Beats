@@ -104,6 +104,7 @@ STATICFILES_DIRS = [
     (BASE_DIR / 'static/gifs/'),
     (BASE_DIR / 'static/favicons/'),
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # MEDIA_URL = '/media/'
