@@ -4,6 +4,9 @@
 ## Purpose
 I made this project as part of Softuni's course "Python Web Framework- July 2021". To make it I utilized the knowledge I gained during the course. In it, I used techniques like template inheritance, using media and static files, authentication, CBVs, and more.
 
+### Deployed to:
+The application is deployed on Heroku here- https://omega-beats.herokuapp.com/
+
 ### Technologies used:
 * Python 
 * Django
