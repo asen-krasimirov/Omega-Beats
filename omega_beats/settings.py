@@ -9,10 +9,10 @@ from django.urls import reverse_lazy
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)xbm6n6whd#-+mi9j4%n-l-n9jj*74ws#mz9v8w5%nthmw#i91'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('IN_DEBUG')
 
 ALLOWED_HOSTS = [
     '*',
@@ -63,25 +63,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'omega_beats.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'beats_db',
-#         'USER': 'postgres',
-#         'PASSWORD': 'passpost',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd1a3n2nrmusear',
-        'USER': 'revckpjgslgltg',
-        'PASSWORD': 'd1cc4ede6de9dbd2dbce2dc1e37bdbd1c54e53979aaba0b8c69184051fc1b156',
-        'HOST': 'ec2-176-34-116-203.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
     }
 }
 
