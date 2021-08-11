@@ -1,0 +1,102 @@
+.custom-field {
+    box-sizing: border-box;
+    border: 5px solid "Patua One", cursive;
+    margin-left: 10px;
+    width: 600px;
+    height: 90px;
+    font-size: 40px;
+    cursor: default;
+}
+
+label {
+    display: inline-block;
+    width: 301px;
+    text-align: center;
+}
+
+.block {
+    margin-bottom: 55px;
+}
+
+.block input {
+    margin-left: 100px;
+}
+
+.block textarea {
+    margin-left: 100px;
+    height: 200px;
+    vertical-align: middle;
+    font-size: 25px;
+}
+
+.block input[name=cover_image] {
+    font-size: 30px;
+}
+
+.block input[name=avatar_image] {
+    font-size: 30px;
+}
+
+#register-button {
+    margin-top: 30px;
+    width: 380px;
+}
+
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
+
+.file-input label {
+    display: block;
+    position: relative;
+    width: 500px;
+    height: 100px;
+    border-radius: 25px;
+    background: #C31616;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FBE5E5;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+    font-size: 50px;
+}
+
+.file-name {
+    position: absolute;
+    bottom: -60px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 0;
+}
+
+input:hover, label[for="id_cover_image"]:hover, label[for="id_avatar_image"]:hover,
+input:focus + label {
+    animation: 1s ease 0s pulse;
+    background-color: #941616;
+    /*transform: scale(1.02);*/
+}
+
+/* Adding an outline to the label on focus */
+input:focus + label {
+    outline: 1px solid #000;
+    outline: -webkit-focus-ring-color auto 2px;
+}
+
+.form-errors {
+    height: 50px;
+    width: 500px;
+    border: 1px solid red;
+    color: #FFF;
+    font-family: "Roboto", sans-serif;
+
+    padding: 20px;
+}
+
