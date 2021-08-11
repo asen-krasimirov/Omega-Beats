@@ -63,13 +63,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'omega_beats.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'beats_db',
+#         'USER': 'postgres',
+#         'PASSWORD': 'passpost',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beats_db',
-        'USER': 'postgres',
-        'PASSWORD': 'passpost',
-        'HOST': '127.0.0.1',
+        'NAME': 'd1a3n2nrmusear',
+        'USER': 'revckpjgslgltg',
+        'PASSWORD': 'd1cc4ede6de9dbd2dbce2dc1e37bdbd1c54e53979aaba0b8c69184051fc1b156',
+        'HOST': 'ec2-176-34-116-203.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
