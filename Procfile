@@ -1,0 +1,1 @@
+web: gunicorn omega_beats.wsgi
