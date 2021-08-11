@@ -171,11 +171,6 @@ def delete_beat(request, pk):
     if request.user.pk != beat.owner.pk:
         return redirect('beat details', beat.pk)
 
-    # if beat.cover_image:
-    #     cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat.cover_image.url[len('/media/'):])
-    #     if os.path.exists(cover_image_url):
-    #         os.remove(cover_image_url)
-
     if beat.cover_image:
         uploader.destroy(beat.cover_image.public_id)
 

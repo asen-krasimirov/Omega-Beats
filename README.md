@@ -43,3 +43,6 @@ These users have all the privileges of the anonymous users plus having the abili
 They can also create their own music and customize their own profile pages. They can edit and delete the content they make.
 #### Admins
 They have a special admin page where they can edit and delete other user's content.
+
+### Storage
+All profile and beat cover images are stored in Cloudinary Management Media Library. The images are called with cloudinary's API.

@@ -10,7 +10,9 @@ click==7.1.2
 click-didyoumean==0.0.3
 click-plugins==1.1.1
 click-repl==0.2.0
+cloudinary==1.26.0
 colorama==0.4.4
+coverage==5.5
 cycler==0.10.0
 distlib==0.3.2
 Django==3.2.3
@@ -19,6 +21,7 @@ djangorestframework==3.12.4
 filelock==3.0.12
 Flask==2.0.1
 future==0.18.2
+gunicorn==20.1.0
 idna==2.10
 itsdangerous==2.0.1
 Jinja2==3.0.1
@@ -63,5 +66,3 @@ wallpaper==0.2.2
 wcwidth==0.2.5
 Werkzeug==2.0.1
 WMI==1.5.1
-
-cloudinary~=1.26.0
