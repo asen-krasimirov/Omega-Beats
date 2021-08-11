@@ -3,6 +3,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import cloudinary
+import mimetypes
 from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,3 +124,5 @@ cloudinary.config(
     api_secret='-i91rvUefrehQjKXZc3nABetTOg',
     secure=True
 )
+
+mimetypes.add_type("text/css", ".css", True)
