@@ -63,3 +63,5 @@ wallpaper==0.2.2
 wcwidth==0.2.5
 Werkzeug==2.0.1
 WMI==1.5.1
+
+cloudinary~=1.26.0

@@ -1,13 +1,11 @@
 import json
-import os
 
-from core.views import is_post_liked
-from django.conf import settings
+import cloudinary.uploader as uploader
+from core.views import is_post_liked, UpdateBeat
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import UpdateView, ListView, TemplateView, DetailView
-from omega_beats.beats.forms import RegisterBeatForm
 from omega_beats.beats.models import Beat, BeatNotes, BeatPlay
 from omega_beats.omega_beats_auth.models import Profile
 
@@ -106,32 +104,22 @@ def save_beat_notes_page(request):
     return redirect('create beat', pk=new_beat_notes.pk)
 
 
-class RegisterBeatView(UpdateView):
+class RegisterBeatView(UpdateBeat):
     """
     A view in which the user gives the beat title, description, and cover image.
     Redirects to the beat details upon submitting.
     """
 
-    model = Beat
-    form_class = RegisterBeatForm
     template_name = 'beats/create_beat.html'
 
-    def get_success_url(self):
-        return reverse_lazy('beat details', args=(self.object.pk,))
 
-
-class EditBeatView(UpdateView):
+class EditBeatView(UpdateBeat):
     """
     A view where the owner of the beat can edit the title, description, and cover of the beat.
     Redirects to the beat details upon submitting.
     """
 
-    model = Beat
-    form_class = RegisterBeatForm
     template_name = 'beats/edit_beat.html'
-
-    def get_success_url(self):
-        return reverse('beat details', args=(self.object.pk,))
 
 
 class BeatDetails(DetailView):
@@ -183,10 +171,13 @@ def delete_beat(request, pk):
     if request.user.pk != beat.owner.pk:
         return redirect('beat details', beat.pk)
 
+    # if beat.cover_image:
+    #     cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat.cover_image.url[len('/media/'):])
+    #     if os.path.exists(cover_image_url):
+    #         os.remove(cover_image_url)
+
     if beat.cover_image:
-        cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat.cover_image.url[len('/media/'):])
-        if os.path.exists(cover_image_url):
-            os.remove(cover_image_url)
+        uploader.destroy(beat.cover_image.public_id)
 
     beat.delete()
     beat_notes.delete()

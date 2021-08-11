@@ -3,6 +3,9 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 from validators.beat_validators import first_latter_capital, no_bad_words
 
+from cloudinary import models as cloudinary_models
+
+
 UserModel = get_user_model()
 
 
@@ -38,10 +41,9 @@ class Beat(models.Model):
         ],
     )
 
-    cover_image = models.ImageField(
-        upload_to='covers',
+    cover_image = cloudinary_models.CloudinaryField(
+        resource_type='image',
         blank=True,
-        # default=settings.BASE_DIR / 'static/images/default_cover.jpg',
     )
 
     beat_notes = models.OneToOneField(

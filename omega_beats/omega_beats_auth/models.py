@@ -2,6 +2,8 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import User, PermissionsMixin
 from django.db import models
 
+from cloudinary import models as cloudinary_models
+
 
 class OmegaBeatManager(BaseUserManager):
     use_in_migrations = True
@@ -72,8 +74,8 @@ class Profile(models.Model):
         default='default description',
     )
 
-    avatar_image = models.ImageField(
-        upload_to='avatars',
+    avatar_image = cloudinary_models.CloudinaryField(
+        resource_type='image',
         blank=True,
     )
 

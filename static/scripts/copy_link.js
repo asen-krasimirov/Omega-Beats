@@ -1,7 +1,8 @@
 const copyTextElem = document.querySelector(".feed-back-btn");
 const inputElem = document.querySelector('#url-holder')
 
-copyTextElem.addEventListener('click', copyText)
+if (copyTextElem) copyTextElem.addEventListener('click', copyText)
+
 
 function copyText() {
 
@@ -13,6 +14,8 @@ function copyText() {
     inputElem.setSelectionRange(0, 99999)
 
     document.execCommand("copy");
+
+    inputElem.style.display = 'none';
 
     /* Change button text*/
     copyTextElem.textContent = 'Link Copied';

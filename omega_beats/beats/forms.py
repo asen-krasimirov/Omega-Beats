@@ -1,8 +1,6 @@
-import os
-
+import cloudinary.uploader as uploader
 from core.forms import BootstrapForm
 from django import forms
-from django.conf import settings
 from omega_beats.beats.models import Beat
 
 
@@ -34,18 +32,14 @@ class RegisterBeatForm(BootstrapForm, forms.ModelForm):
 
     def save(self, commit=True):
         """
-        An extension to the default save() method which deletes the previous cover image of the beat.
-        And deletes the image upon entity deletion.
+        An extension to the default save() method which deletes the previous avatar image of the profile.
         """
 
-        beat_info = Beat.objects.get(pk=self.instance.pk)
+        beat = Beat.objects.get(pk=self.instance.pk)
         files = self.files
+        public_id = beat.cover_image.public_id
 
-        try:
-            cover_image_url = os.path.join(settings.MEDIA_ROOT[:-1], beat_info.cover_image.url[len('/media/'):])
-            if commit and files:
-                os.remove(cover_image_url)
-        except (ValueError, FileNotFoundError):
-            pass
+        if commit and files and public_id:
+            uploader.destroy(public_id)
 
         return super().save(commit)
